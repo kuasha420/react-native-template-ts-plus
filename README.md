@@ -2,6 +2,15 @@
 
 > React Native TypeScript Template with Superpowers.
 
+- [React Native Template TypeScript Plus](#react-native-template-typescript-plus)
+  - [Features](#features)
+  - [Usage](#usage)
+    - [Usage with older versions of React Native](#usage-with-older-versions-of-react-native)
+      - [React Native <=> Template Version](#react-native--template-version)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Credits](#credits)
+
 ## Features
 
 - Elegant usage directly within the [React Native CLI](https://github.com/react-native-community/cli)
@@ -13,7 +22,7 @@
 - Absolute Import using `~/` prefix.
 - React Native Paper & Vector Icons Installed & Pre-configured.
 - Easy version management with [React Native Version](https://github.com/stovmascript/react-native-version)
-- Integrated README on the generated project!
+- Integrated [README](template/README.md) on the generated project!
 
 ## Usage
 
@@ -38,3 +47,11 @@ Contributions are very welcome. Please check out the [contributing document](CON
 ## License
 
 This project is [MIT](LICENSE) licensed.
+
+## Credits
+
+This repository and template is soft-forked from [ react-native-template-typescript ](https://github.com/react-native-community/react-native-template-typescript).
+
+All integrated and pre-configured libraries are the hard work of their respective authors and contributors.
+
+The Awesome React Native Community
