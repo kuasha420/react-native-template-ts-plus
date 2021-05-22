@@ -7,7 +7,7 @@ import { RootStackScreenProps } from '~/navigators/root-stack';
 
 const Welcome = observer<RootStackScreenProps<'Welcome'>>(() => {
   return (
-    <Container style={styles.center}>
+    <Container contentContainerStyle={styles.center}>
       <PrimaryText>Welcome to HelloWorld</PrimaryText>
     </Container>
   );

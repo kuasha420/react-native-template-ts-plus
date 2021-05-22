@@ -49,8 +49,7 @@ const Main = observer(() => {
 
   useEffect(() => {
     const isDarkMode = colorScheme === 'dark';
-    changeBarColors(isDarkMode, '#50000000', 'transparent');
-    // or changeBarColors(isDarkMode);
+    changeBarColors(isDarkMode);
   }, [colorScheme]);
 
   const onReady = useCallback(async () => {
