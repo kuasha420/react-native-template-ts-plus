@@ -8,7 +8,7 @@ import {
 } from 'react-native-screens/native-stack';
 
 export type RootStackParams = {
-  Loader: undefined | { speed?: number; text?: string };
+  Loader: undefined | { delay?: number; text?: string };
   Welcome: undefined;
 };
 

@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>www:helloworld.com</string>
+		<string>www.helloworld.com</string>
 	</array>
 </dict>
 </plist>

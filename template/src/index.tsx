@@ -18,22 +18,22 @@ import DefaultTheme from '~/themes/default-theme';
 const linking: LinkingOptions = {
   prefixes: [
     /* your linking prefixes */
-    'HelloWorld://',
-    'https://www.HelloWorld.com',
+    'helloworld://',
+    'https://www.helloworld.com',
   ],
   config: {
     /* configuration for matching screens with paths */
     screens: {
       initialRouteName: 'Loader',
-      Loader: 'video/:id',
-      Welcome: {
-        path: 'welcome/:speed?/:text?',
+      Welcome: 'welcome',
+      Loader: {
+        path: 'loader/:delay?/:text?',
         parse: {
-          speed: (speed) => Number(speed),
+          delay: (delay) => Number(delay),
           text: (text) => decodeURIComponent(text),
         },
         stringify: {
-          speed: (speed) => String(speed),
+          delay: (delay) => String(delay),
           text: (text) => encodeURIComponent(text),
         },
       },
