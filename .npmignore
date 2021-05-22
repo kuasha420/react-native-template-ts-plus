@@ -1,0 +1,21 @@
+node_modules/
+.DS_Store
+
+# Development
+template/.vscode/
+template/node_modules/
+template/.editorconfig
+template/.eslintrc
+template/.prettierignore
+template/.prettierrc
+template/yarn.lock
+
+# IOS Generated
+template/ios/Podfile.lock 
+template/ios/Pods/
+template/ios/HelloWorld.xcworkspace/xcuserdata/
+
+# Android Generated
+template/android/.gradle
+template/android/.idea
+template/android/local.properties

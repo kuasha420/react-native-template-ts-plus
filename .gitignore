@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+
+# IOS Generated
+template/ios/Podfile.lock 
+template/ios/Pods/
+template/ios/HelloWorld.xcworkspace/xcuserdata/
+
+# Android Generated
+template/android/.gradle
+template/android/.idea
+template/android/local.properties
