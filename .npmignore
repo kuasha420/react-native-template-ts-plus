@@ -1,5 +1,12 @@
+# Root
 node_modules/
 .DS_Store
+.gitignore
+.npmignore
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+ISSUE_TEMPLATE.md
+yarn.lock
 
 # Development
 template/.vscode/
