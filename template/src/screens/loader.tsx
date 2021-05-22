@@ -7,6 +7,7 @@ import FixedContainer from '~/components/fixed-container';
 import PrimaryText from '~/components/primary-text';
 import { RootStackScreenProps } from '~/navigators/root-stack';
 import { useRootStore } from '~/stores/store-setup';
+import delay from '~/utils/delay';
 
 const Loader = observer<RootStackScreenProps<'Loader'>>(({ navigation, route }) => {
   const { hydrate, hydrated, version } = useRootStore();
@@ -14,9 +15,9 @@ const Loader = observer<RootStackScreenProps<'Loader'>>(({ navigation, route }) 
 
   useEffect(() => {
     if (hydrated) {
-      navigation.replace('Welcome');
+      delay(route.params?.delay).then(() => navigation.replace('Welcome'));
     }
-  }, [hydrated, navigation]);
+  }, [hydrated, navigation, route.params?.delay]);
 
   useEffect(() => {
     (async () => {
