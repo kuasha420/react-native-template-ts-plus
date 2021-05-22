@@ -9,12 +9,8 @@ ISSUE_TEMPLATE.md
 yarn.lock
 
 # Development
-template/.vscode/
 template/node_modules/
 template/.editorconfig
-template/.eslintrc
-template/.prettierignore
-template/.prettierrc
 template/yarn.lock
 
 # IOS Generated
