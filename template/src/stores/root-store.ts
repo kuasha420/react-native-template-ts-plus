@@ -9,9 +9,17 @@ const RootStore = types
   .model('RootStore', {
     version: '1.0.0',
     latestVersion: '1.0.0',
+    userColorScheme: types.maybeNull(types.union(types.literal('light'), types.literal('dark'))),
     hydrated: false,
   })
   .actions((self) => ({
+    setUserColorScheme(colorScheme: typeof self.userColorScheme | 'auto') {
+      if (colorScheme === 'auto') {
+        self.userColorScheme = null;
+      } else {
+        self.userColorScheme = colorScheme;
+      }
+    },
     hydrate: flow(function* hydrate() {
       try {
         const version: string = yield getLatestVersion();
@@ -26,6 +34,12 @@ const RootStore = types
   .views((self) => ({
     get outdated() {
       return self.version !== self.latestVersion;
+    },
+    get currentColorScheme() {
+      if (self.userColorScheme) {
+        return self.userColorScheme;
+      }
+      return 'auto';
     },
   }));
 

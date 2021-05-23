@@ -9,7 +9,7 @@ import { Linking, Platform, useColorScheme } from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
 import { changeBarColors } from 'react-native-immersive-bars';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context';
 import RootStack from '~/navigators/root-stack';
 import { RootStoreProvider, useRootStore } from '~/stores/store-setup';
 import DarkTheme from '~/themes/dark-theme';
@@ -43,17 +43,25 @@ const linking: LinkingOptions = {
 };
 
 const Main = observer(() => {
-  const { hydrate } = useRootStore();
+  const { hydrate, userColorScheme } = useRootStore();
   const nav = useRef<NavigationContainerRef>(null);
-  const colorScheme = useColorScheme();
-  const theme = useMemo(() => (colorScheme === 'dark' ? DarkTheme : DefaultTheme), [colorScheme]);
+  const systemColorScheme = useColorScheme();
+  const isDark = useMemo(
+    () => userColorScheme === 'dark' || systemColorScheme === 'dark',
+    [systemColorScheme, userColorScheme]
+  );
+  const theme = useMemo(() => {
+    if (isDark) {
+      return DarkTheme;
+    }
+    return DefaultTheme;
+  }, [isDark]);
 
   useEffect(() => {
     if (Platform.OS === 'android') {
-      const isDarkMode = colorScheme === 'dark';
-      changeBarColors(isDarkMode);
+      changeBarColors(isDark);
     }
-  }, [colorScheme]);
+  }, [isDark]);
 
   const onReady = useCallback(async () => {
     try {
@@ -69,7 +77,7 @@ const Main = observer(() => {
   }, [hydrate]);
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <PaperProvider theme={theme}>
         <NavigationContainer linking={linking} theme={theme} ref={nav} onReady={onReady}>
           <RootStack />
