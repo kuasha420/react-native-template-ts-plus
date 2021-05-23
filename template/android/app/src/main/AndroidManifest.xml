@@ -32,13 +32,13 @@
           <action android:name="android.intent.action.VIEW" />
           <category android:name="android.intent.category.DEFAULT" />
           <category android:name="android.intent.category.BROWSABLE" />
-          <data android:scheme="https" android:host="www.HelloWorld.com" />
+          <data android:scheme="https" android:host="www.helloworld.com" />
         </intent-filter>
         <intent-filter android:label="filter_react_native">
           <action android:name="android.intent.action.VIEW" />
           <category android:name="android.intent.category.DEFAULT" />
           <category android:name="android.intent.category.BROWSABLE" />
-          <data android:scheme="HelloWorld" />
+          <data android:scheme="helloworld" />
         </intent-filter>
       </activity>
     </application>

@@ -14,6 +14,7 @@ import RootStack from '~/navigators/root-stack';
 import { RootStoreProvider, useRootStore } from '~/stores/store-setup';
 import DarkTheme from '~/themes/dark-theme';
 import DefaultTheme from '~/themes/default-theme';
+import delay from '~/utils/delay';
 
 const linking: LinkingOptions = {
   prefixes: [
@@ -29,11 +30,11 @@ const linking: LinkingOptions = {
       Loader: {
         path: 'loader/:delay?/:text?',
         parse: {
-          delay: (delay) => Number(delay),
+          delay: (ms) => Number(ms),
           text: (text) => decodeURIComponent(text),
         },
         stringify: {
-          delay: (delay) => String(delay),
+          delay: (ms) => String(ms),
           text: (text) => encodeURIComponent(text),
         },
       },
@@ -56,8 +57,9 @@ const Main = observer(() => {
     try {
       const uri = await Linking.getInitialURL();
       if (uri) {
+        await delay(500);
         await hydrate();
-        await RNBootSplash.hide({ fade: true });
+        RNBootSplash.hide({ fade: true });
       }
     } catch (error) {
       console.error(error);

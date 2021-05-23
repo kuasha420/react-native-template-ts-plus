@@ -23,7 +23,8 @@ const Loader = observer<RootStackScreenProps<'Loader'>>(({ navigation, route }) 
     (async () => {
       try {
         if ((await RNBootSplash.getVisibilityStatus()) === 'visible') {
-          await RNBootSplash.hide({ fade: false });
+          await delay(500);
+          await RNBootSplash.hide({ fade: true });
           hydrate();
         } else if (!hydrated) {
           hydrate();

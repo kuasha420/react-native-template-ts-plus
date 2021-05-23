@@ -15,6 +15,7 @@
 
 - Elegant usage directly within the [React Native CLI](https://github.com/react-native-community/cli)
 - TypeScript Configured for Type safety and great Developer experience.
+- Built-in dark mode that follows system preference (Experimental) or in app preference.
 - Persistent Global State Management with [Mobx State Tree](https://github.com/mobxjs/mobx-state-tree) and [Async Storage](https://github.com/react-native-async-storage/async-storage) using [MST Persistent Store](https://github.com/kuasha420/mst-persistent-store)
 - Splash Screen Configured using [React Native Bootsplash](https://github.com/zoontek/react-native-bootsplash)
 - Preconfigured Navigation System using [React Navigation](https://reactnavigation.org/)
@@ -27,6 +28,10 @@
 ## Usage
 
 `npx react-native init MyApp --template react-native-template-ts-plus`
+
+Or use custom App Name and/or directory
+
+`npx react-native init MyApp --title 'My App' --directory 'my-app' --template react-native-template-ts-plus`
 
 ### Usage with older versions of React Native
 

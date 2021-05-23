@@ -1,9 +1,9 @@
 {
-  "name": "HelloWorld",
+  "name": "helloworld",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "react-native run-android --main-activity com.zoontek.rnbootsplash.RNBootSplashActivity",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
