@@ -21,6 +21,7 @@
     - [Container](#container)
     - [Fixed Container](#fixed-container)
     - [Keyboard Avoiding Container](#keyboard-avoiding-container)
+  - [Troubleshooting](#troubleshooting)
 
 This was bootstrapped with [TS-Plus Template](https://github.com/kuasha420/react-native-template-ts-plus)
 
@@ -189,3 +190,7 @@ For non scrollable pages, respects safe area and accepts SafeAreaView props.
 ### Keyboard Avoiding Container
 
 Same as Container, but plays nicely with keyboard. Useful for screens with forms.
+
+## Troubleshooting
+
+See [Here](https://github.com/kuasha420/react-native-template-ts-plus#troubleshooting) for a list of potential issues and their solutions.

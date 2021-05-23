@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
-import { Linking, useColorScheme } from 'react-native';
+import { Linking, Platform, useColorScheme } from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
 import { changeBarColors } from 'react-native-immersive-bars';
 import { Provider as PaperProvider } from 'react-native-paper';
@@ -49,8 +49,10 @@ const Main = observer(() => {
   const theme = useMemo(() => (colorScheme === 'dark' ? DarkTheme : DefaultTheme), [colorScheme]);
 
   useEffect(() => {
-    const isDarkMode = colorScheme === 'dark';
-    changeBarColors(isDarkMode);
+    if (Platform.OS === 'android') {
+      const isDarkMode = colorScheme === 'dark';
+      changeBarColors(isDarkMode);
+    }
   }, [colorScheme]);
 
   const onReady = useCallback(async () => {

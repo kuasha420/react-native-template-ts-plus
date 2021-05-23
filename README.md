@@ -7,6 +7,11 @@
   - [Usage](#usage)
     - [Usage with older versions of React Native](#usage-with-older-versions-of-react-native)
       - [React Native <=> Template Version](#react-native--template-version)
+  - [Troubleshooting](#troubleshooting)
+    - [IOS](#ios)
+      - [fatal error: 'openssl/opensslv.h' file not found](#fatal-error-opensslopensslvh-file-not-found)
+        - [Solution 1 - Create Symbolic Links](#solution-1---create-symbolic-links)
+        - [Solution 2 - Disable Flipper](#solution-2---disable-flipper)
   - [Contributing](#contributing)
   - [License](#license)
   - [Credits](#credits)
@@ -44,6 +49,50 @@ See the below table to find out which version of the template to use.
 | React Native | Template |
 | ------------ | -------- |
 | 0.64.1       | 1.0.\*   |
+
+## Troubleshooting
+
+### IOS
+
+#### fatal error: 'openssl/opensslv.h' file not found
+
+This seems to happen on APFS Case Sensitive Filesystems when Flipper is enabled.
+
+##### Solution 1 - Create Symbolic Links
+
+Thanks to [felexx90](https://github.com/facebook/react-native/issues/28409#issuecomment-833182353) for providing this solution.
+
+Edit `ios/Podfile` and add the following lines inside `post_install`.
+
+```ruby
+post_install do |installer|
+    react_native_post_install(installer)
+    # Fix OpenSSL-Universal on APFS Case Sensitive Filesystem
+    system('cd Pods/Headers/Public; ln -s Protobuf protobuf')
+    system('cd Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/ios-arm64_arm64e_armv7_armv7s; ln -sfh OpenSSL.framework openssl.framework')
+    system('cd Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/ios-arm64_i386_x86_64-simulator; ln -sfh OpenSSL.framework openssl.framework')
+    system('cd Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/ios-arm64_x86_64-maccatalyst; ln -sfh OpenSSL.framework openssl.framework')
+    system('cd Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/macos-arm64_arm64e_x86_64; ln -sfh OpenSSL.framework openssl.framework')
+  end
+```
+
+Now, reinstall pods.
+
+`cd ios && pod install`
+
+##### Solution 2 - Disable Flipper
+
+If you do not need flipper you can just disable it to fix this error.
+
+Edit `ios/Podfile` and comment out `use_flipper!()`.
+
+```ruby
+  # use_flipper!()
+```
+
+Now, reinstall pods and update repo.
+
+`cd ios && pod install --repo-update`
 
 ## Contributing
 
