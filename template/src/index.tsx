@@ -47,7 +47,7 @@ const Main = observer(() => {
   const nav = useRef<NavigationContainerRef>(null);
   const systemColorScheme = useColorScheme();
   const isDark = useMemo(
-    () => userColorScheme === 'dark' || systemColorScheme === 'dark',
+    () => userColorScheme === 'dark' || (!userColorScheme && systemColorScheme === 'dark'),
     [systemColorScheme, userColorScheme]
   );
   const theme = useMemo(() => {

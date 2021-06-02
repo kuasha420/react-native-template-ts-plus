@@ -25,7 +25,7 @@ const Welcome = observer<RootStackScreenProps<'Welcome'>>(() => {
   const systemColorScheme = useColorScheme();
 
   const isDark = useMemo(
-    () => userColorScheme === 'dark' || systemColorScheme === 'dark',
+    () => userColorScheme === 'dark' || (!userColorScheme && systemColorScheme === 'dark'),
     [systemColorScheme, userColorScheme]
   );
 

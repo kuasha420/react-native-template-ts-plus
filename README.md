@@ -1,20 +1,19 @@
-# React Native Template TypeScript Plus
+# React Native Template TypeScript Plus <!-- omit in toc -->
 
 > React Native TypeScript Template with Superpowers.
 
-- [React Native Template TypeScript Plus](#react-native-template-typescript-plus)
-  - [Features](#features)
-  - [Usage](#usage)
-    - [Usage with older versions of React Native](#usage-with-older-versions-of-react-native)
-      - [React Native <=> Template Version](#react-native--template-version)
-  - [Troubleshooting](#troubleshooting)
-    - [IOS](#ios)
-      - [fatal error: 'openssl/opensslv.h' file not found](#fatal-error-opensslopensslvh-file-not-found)
-        - [Solution 1 - Create Symbolic Links](#solution-1---create-symbolic-links)
-        - [Solution 2 - Disable Flipper](#solution-2---disable-flipper)
-  - [Contributing](#contributing)
-  - [License](#license)
-  - [Credits](#credits)
+- [Features](#features)
+- [Usage](#usage)
+  - [Usage with older versions of React Native](#usage-with-older-versions-of-react-native)
+    - [React Native <=> Template Version](#react-native--template-version)
+- [Troubleshooting](#troubleshooting)
+  - [IOS](#ios)
+    - [fatal error: 'openssl/opensslv.h' file not found](#fatal-error-opensslopensslvh-file-not-found)
+      - [Solution 1 - Create Symbolic Links](#solution-1---create-symbolic-links)
+      - [Solution 2 - Disable Flipper](#solution-2---disable-flipper)
+- [Contributing](#contributing)
+- [License](#license)
+- [Credits](#credits)
 
 ## Features
 
