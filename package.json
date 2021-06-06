@@ -1,6 +1,6 @@
 {
   "name": "react-native-template-ts-plus",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A React Native TypeScript Template with Superpowers",
   "scripts": {
     "test": "exit 0"
