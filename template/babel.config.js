@@ -19,6 +19,10 @@ const moduleResolver = [
       '.native.jsx',
       '.native.ts',
       '.native.tsx',
+      '.web.js',
+      '.web.jsx',
+      '.web.ts',
+      '.web.tsx',
     ],
     root: ['.'],
     alias: {

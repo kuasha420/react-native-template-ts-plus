@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useCallback, useRef } from 'react';
-import { Animated, Easing, StyleSheet, View } from 'react-native';
+import { Animated, Easing, Platform, StyleSheet, View } from 'react-native';
 import { Headline, Paragraph, Text, ToggleButton, useTheme } from 'react-native-paper';
 import { Edge } from 'react-native-safe-area-context';
 import Container from '~/components/container';
@@ -36,7 +36,7 @@ const Welcome = observer<DrawerScreenProp<'Welcome'>>(({ navigation }) => {
           toValue: 1,
           duration: 3000,
           easing: Easing.linear,
-          useNativeDriver: true,
+          useNativeDriver: Platform.OS !== 'web',
         })
       ),
     ]).start();
