@@ -1,11 +1,11 @@
-import Loader from '~/screens/loader';
-import Welcome from '~/screens/welcome';
 import React from 'react';
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from 'react-native-screens/native-stack';
+import Loader from '~/screens/loader';
+import Welcome from '~/screens/welcome';
 
 export type RootStackParams = {
   Loader: undefined | { delay?: number; text?: string };
