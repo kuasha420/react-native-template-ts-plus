@@ -11,8 +11,6 @@ import { useRootStore } from '~/stores/store-setup';
 const edges: Edge[] = ['right', 'bottom', 'left'];
 
 const Welcome = observer<RootStackScreenProps<'Welcome'>>(() => {
-  const { top } = useSafeAreaInsets();
-  const spin = useRef(new Animated.Value(0));
   const {
     version,
     latestVersion,
@@ -21,23 +19,36 @@ const Welcome = observer<RootStackScreenProps<'Welcome'>>(() => {
     setUserColorScheme,
     currentColorScheme,
   } = useRootStore();
+
   const theme = useTheme();
   const systemColorScheme = useColorScheme();
+  const { top } = useSafeAreaInsets();
 
   const isDark = useMemo(
     () => userColorScheme === 'dark' || (!userColorScheme && systemColorScheme === 'dark'),
     [systemColorScheme, userColorScheme]
   );
 
+  const topValue = useRef(new Animated.Value(0));
+  const spin = useRef(new Animated.Value(0));
+
   const animate = useCallback(() => {
-    Animated.loop(
-      Animated.timing(spin.current, {
-        toValue: 1,
-        duration: 3000,
-        easing: Easing.linear,
+    Animated.stagger(700, [
+      Animated.timing(topValue.current, {
+        toValue: 70,
+        duration: 750,
+        easing: Easing.bounce,
         useNativeDriver: true,
-      })
-    ).start();
+      }),
+      Animated.loop(
+        Animated.timing(spin.current, {
+          toValue: 1,
+          duration: 3000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        })
+      ),
+    ]).start();
   }, []);
 
   const rotate = spin.current.interpolate({
@@ -46,16 +57,35 @@ const Welcome = observer<RootStackScreenProps<'Welcome'>>(() => {
   });
 
   return (
-    <Container edges={edges}>
-      <Appbar.Header statusBarHeight={top}>
-        <StatusBar barStyle="light-content" backgroundColor="transparent" />
-        <Appbar.Content title="Welcome" subtitle="src/screens/welcome.tsx" />
-      </Appbar.Header>
-      <Animated.Image
-        onLoad={animate}
-        style={[styles.logo, { transform: [{ rotate }] }]}
-        source={require('~/assets/bootsplash_logo.png')}
-      />
+    <Container
+      edges={edges}
+      header={
+        <Appbar.Header statusBarHeight={top}>
+          <StatusBar barStyle="light-content" backgroundColor="transparent" />
+          <Appbar.Content title="Welcome" subtitle="src/screens/welcome.tsx" />
+        </Appbar.Header>
+      }
+    >
+      <Animated.View style={styles.logo}>
+        <Animated.Image
+          style={[styles.reactLogo, { transform: [{ rotate }] }]}
+          source={require('~/assets/react_logo.png')}
+        />
+        <Animated.Image
+          onLoad={animate}
+          style={[
+            styles.templateLogo,
+            {
+              transform: [
+                {
+                  translateY: topValue.current,
+                },
+              ],
+            },
+          ]}
+          source={require('~/assets/template_logo.png')}
+        />
+      </Animated.View>
       <View style={styles.container}>
         <Headline style={styles.headline}>Thank For Using React Native TS-Plus Template</Headline>
         <Paragraph style={styles.pitch}>
@@ -100,10 +130,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   logo: {
+    marginTop: 15,
+    alignSelf: 'center',
+    height: 260,
+  },
+  reactLogo: {
     height: 200,
     width: 200,
-    marginVertical: 15,
-    alignSelf: 'center',
+  },
+  templateLogo: {
+    height: 200,
+    width: 200,
+    position: 'absolute',
   },
   headline: {
     textAlign: 'center',
