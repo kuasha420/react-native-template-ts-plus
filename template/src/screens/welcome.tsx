@@ -29,7 +29,7 @@ const Welcome = observer<DrawerScreenProp<'Welcome'>>(({ navigation }) => {
         toValue: 70,
         duration: 750,
         easing: Easing.bounce,
-        useNativeDriver: true,
+        useNativeDriver: Platform.OS !== 'web',
       }),
       Animated.loop(
         Animated.timing(spin.current, {

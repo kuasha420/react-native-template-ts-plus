@@ -9,7 +9,7 @@
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "type-check": "tsc --noEmit",
-    "regenerate-bootsplash": "react-native generate-bootsplash src/assets/bootsplash_logo_original.png --background-color=ffffff --logo-width=200 --assets-path=src/assets",
+    "regenerate-bootsplash": "react-native generate-bootsplash src/assets/bootsplash_logo_original.png --background-color=ffffff --logo-width=200 --assets-path=src/assets --webroot-path=web",
     "postversion": "react-native-version",
     "web": "webpack serve --hot",
     "web:build": "webpack --mode=\"production\""
@@ -28,6 +28,9 @@
     "react": "17.0.2",
     "react-native": "0.66.3",
     "react-native-bootsplash": "^3.2.6",
+    "@react-navigation/stack": "^5.14.5",
+    "localforage": "^1.9.0",
+    "react-dom": "17.0.1",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-immersive-bars": "^1.0.4",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
