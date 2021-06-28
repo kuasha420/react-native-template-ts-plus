@@ -5,11 +5,12 @@ import {
 } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
-import { Linking, Platform, useColorScheme } from 'react-native';
+import { Linking, Platform } from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
 import { changeBarColors } from 'react-native-immersive-bars';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context';
+import useIsDarkTheme from '~/hooks/use-is-dark-theme';
 import RootStack from '~/navigators/root-stack';
 import { RootStoreProvider, useRootStore } from '~/stores/store-setup';
 import DarkTheme from '~/themes/dark-theme';
@@ -43,13 +44,9 @@ const linking: LinkingOptions = {
 };
 
 const Main = observer(() => {
-  const { hydrate, userColorScheme } = useRootStore();
+  const { hydrate } = useRootStore();
   const nav = useRef<NavigationContainerRef>(null);
-  const systemColorScheme = useColorScheme();
-  const isDark = useMemo(
-    () => userColorScheme === 'dark' || (!userColorScheme && systemColorScheme === 'dark'),
-    [systemColorScheme, userColorScheme]
-  );
+  const [isDark] = useIsDarkTheme();
   const theme = useMemo(() => {
     if (isDark) {
       return DarkTheme;

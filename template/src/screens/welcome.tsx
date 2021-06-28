@@ -1,33 +1,24 @@
 import { observer } from 'mobx-react-lite';
-import React, { useCallback, useMemo, useRef } from 'react';
-import { Animated, Easing, StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import { Appbar, Headline, Paragraph, Text, ToggleButton, useTheme } from 'react-native-paper';
-import { Edge, useSafeAreaInsets } from 'react-native-safe-area-context';
+import React, { useCallback, useRef } from 'react';
+import { Animated, Easing, StyleSheet, View } from 'react-native';
+import { Headline, Paragraph, Text, ToggleButton, useTheme } from 'react-native-paper';
+import { Edge } from 'react-native-safe-area-context';
 import Container from '~/components/container';
+import CustomHeader from '~/components/custom-header';
 import PrimaryText from '~/components/primary-text';
-import { RootStackScreenProps } from '~/navigators/root-stack';
+import useIsDarkTheme from '~/hooks/use-is-dark-theme';
+import { DrawerScreenProps } from '~/navigators/drawer';
 import { useRootStore } from '~/stores/store-setup';
 
 const edges: Edge[] = ['right', 'bottom', 'left'];
 
-const Welcome = observer<RootStackScreenProps<'Welcome'>>(() => {
-  const {
-    version,
-    latestVersion,
-    outdated,
-    userColorScheme,
-    setUserColorScheme,
-    currentColorScheme,
-  } = useRootStore();
+const Welcome = observer<DrawerScreenProps<'Welcome'>>(({ navigation }) => {
+  const { version, latestVersion, outdated, setUserColorScheme, currentColorScheme } =
+    useRootStore();
 
   const theme = useTheme();
-  const systemColorScheme = useColorScheme();
-  const { top } = useSafeAreaInsets();
 
-  const isDark = useMemo(
-    () => userColorScheme === 'dark' || (!userColorScheme && systemColorScheme === 'dark'),
-    [systemColorScheme, userColorScheme]
-  );
+  const [isDark, isSystem] = useIsDarkTheme();
 
   const topValue = useRef(new Animated.Value(0));
   const spin = useRef(new Animated.Value(0));
@@ -60,10 +51,11 @@ const Welcome = observer<RootStackScreenProps<'Welcome'>>(() => {
     <Container
       edges={edges}
       header={
-        <Appbar.Header statusBarHeight={top}>
-          <StatusBar barStyle="light-content" backgroundColor="transparent" />
-          <Appbar.Content title="Welcome" subtitle="src/screens/welcome.tsx" />
-        </Appbar.Header>
+        <CustomHeader
+          onLeftMenuPress={navigation.toggleDrawer}
+          title="Welcome"
+          subtitle="src/screens/welcome.tsx"
+        />
       }
     >
       <Animated.View style={styles.logo}>
@@ -108,7 +100,7 @@ const Welcome = observer<RootStackScreenProps<'Welcome'>>(() => {
         <View style={styles.theme}>
           <Text>Currently using: {isDark ? 'Dark' : 'Default'} Theme</Text>
           <Text style={{ color: theme.colors.disabled }}>
-            Theme is set by {userColorScheme ? 'User' : 'System'}
+            Theme is set by {isSystem ? 'System' : 'User'}
           </Text>
         </View>
         <ToggleButton.Row
