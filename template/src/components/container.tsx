@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
   },
   scrollview: {
     flex: 1,
+    flexBasis: 0, // React Native Web
   },
 });
 

@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+  <link id="bootsplashPreload" rel="preload" as="image" href="bootsplash_logo.png"
+    imagesrcset="bootsplash_logo@2x.png 2x, bootsplash_logo@3x.png 3x, bootsplash_logo@4x.png 4x">
+
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
@@ -54,6 +57,7 @@
       user-select: none;
     }
   </style>
+
   <style id="bootsplashStyle">
     :root {
       --bootsplash: url('bootsplash_logo.png');
@@ -124,10 +128,8 @@
 
 <body>
   <div id="root"></div>
-  <script src="build/bundle.js"></script>
-
-
   <div id="bootsplash" class="visible"></div>
+  <script src="build/bundle.js"></script>
 </body>
 
 </html>
