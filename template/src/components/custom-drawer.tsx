@@ -34,7 +34,7 @@ const CustomDrawer = observer<DrawerContentComponentProps>((props) => {
           <Drawer.Item
             key={route.key}
             active={props.state.index === i}
-            label={route.name}
+            label={props.descriptors[route.key].options.title || route.name}
             icon={props.descriptors[route.key].options.drawerIcon?.(iconProps) ?? undefined}
             onPress={() => props.navigation.navigate(route.name)}
           />

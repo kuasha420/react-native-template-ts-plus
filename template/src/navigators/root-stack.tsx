@@ -1,15 +1,16 @@
+import { NavigatorScreenParams } from '@react-navigation/native';
 import React from 'react';
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from 'react-native-screens/native-stack';
-import Drawer from '~/navigators/drawer';
+import Drawer, { DrawerScreensParams } from '~/navigators/drawer';
 import Loader from '~/screens/loader';
 
 export type RootStackScreensParams = {
   Loader: undefined | { delay?: number; text?: string };
-  Drawer: undefined;
+  Drawer: undefined | NavigatorScreenParams<DrawerScreensParams>;
 };
 
 export type RootStackScreens = keyof RootStackScreensParams;

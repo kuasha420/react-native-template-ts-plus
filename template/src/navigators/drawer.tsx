@@ -1,14 +1,20 @@
 import CustomDrawer from '~/components/custom-drawer';
 import { createDrawerNavigator, DrawerNavigationProp } from '@react-navigation/drawer';
-import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
+import {
+  CompositeNavigationProp,
+  NavigatorScreenParams,
+  RouteProp,
+} from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
 import { RootStackScreensParams } from '~/navigators/root-stack';
 import Welcome from '~/screens/welcome';
+import BottomTab, { BottomTabScreensParams } from '~/navigators/bottom-tab';
 
 export type DrawerScreensParams = {
   Welcome: undefined;
+  BottomTab: undefined | NavigatorScreenParams<BottomTabScreensParams>;
 };
 
 export type DrawerScreens = keyof DrawerScreensParams;
@@ -30,6 +36,11 @@ const Drawer = () => (
     drawerStyle={styles.drawer}
   >
     <Screen name="Welcome" component={Welcome} options={{ drawerIcon: () => 'home' }} />
+    <Screen
+      name="BottomTab"
+      component={BottomTab}
+      options={{ drawerIcon: () => 'dots-horizontal', title: 'Bottom Tab' }}
+    />
   </Navigator>
 );
 
