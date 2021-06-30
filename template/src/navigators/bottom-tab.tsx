@@ -9,7 +9,6 @@ import { Platform } from 'react-native';
 import { changeBarColors } from 'react-native-immersive-bars';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import useIsDarkTheme from '~/hooks/use-is-dark-theme';
 import { DrawerScreensParams } from '~/navigators/drawer';
 import { RootStackScreensParams } from '~/navigators/root-stack';
@@ -36,24 +35,10 @@ export interface BottomTabScreenProps<T extends BottomTabScreens> {
 
 const { Navigator, Screen } = createMaterialBottomTabNavigator<BottomTabScreensParams>();
 
-interface IconProps {
-  focused: boolean;
-  color: string;
-}
-
-const size = 26;
-
-const HomeIcon: React.FC<IconProps> = ({ color }) => {
-  return <Icon name="home" size={size} color={color} />;
-};
-
-const ProfilesIcon: React.FC<IconProps> = ({ color }) => {
-  return <Icon name="account" size={size} color={color} />;
-};
-
 const BottomTab = () => {
   const { bottom } = useSafeAreaInsets();
   const [isDark] = useIsDarkTheme();
+
   useFocusEffect(
     useCallback(() => {
       if (Platform.OS === 'android') {
@@ -62,10 +47,11 @@ const BottomTab = () => {
       }
     }, [isDark])
   );
+
   return (
     <Navigator sceneAnimationEnabled={true} initialRouteName="Home" safeAreaInsets={{ bottom }}>
-      <Screen name="Home" component={Home} options={{ tabBarIcon: HomeIcon }} />
-      <Screen name="Details" component={Details} options={{ tabBarIcon: ProfilesIcon }} />
+      <Screen name="Home" component={Home} options={{ tabBarIcon: 'home' }} />
+      <Screen name="Details" component={Details} options={{ tabBarIcon: 'account' }} />
     </Navigator>
   );
 };
