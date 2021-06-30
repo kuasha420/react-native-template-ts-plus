@@ -22,3 +22,4 @@ template/ios/HelloWorld.xcworkspace/xcuserdata/
 template/android/.gradle
 template/android/.idea
 template/android/local.properties
+template/android/app/build/
