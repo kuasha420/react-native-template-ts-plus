@@ -164,6 +164,7 @@ React Navigation is pre-configured with the Root Stack Being a Native Stack.
 
 The aforementioned navigators are nested in the following way:
 
+```
 Root Stack Navigator (navigators/root-stack.tsx)
 |-- Loader Screen (screens/loader.tsx)
 |-- Drawer Navigator (navigators/drawer.tsx)
@@ -175,6 +176,7 @@ Root Stack Navigator (navigators/root-stack.tsx)
 | |-- Bottom Tab Navigator (navigators/bottom-tab.tsx)
 | | |-- Home Screen (screens/home.tsx)
 | | |-- Details Screen (screens/details.tsx)
+```
 
 ## Deep Link
 
