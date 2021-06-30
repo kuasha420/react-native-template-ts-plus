@@ -12,6 +12,8 @@
     - [Require Syntax (Generally Used for Assets)](#require-syntax-generally-used-for-assets)
 - [Global State Management](#global-state-management)
 - [Navigation](#navigation)
+  - [Pre Configured Navigators](#pre-configured-navigators)
+  - [Navigator Nesting](#navigator-nesting)
 - [Deep Link](#deep-link)
   - [URL and Schema](#url-and-schema)
   - [Testing Deep Links](#testing-deep-links)
@@ -150,6 +152,29 @@ To learn Mobx State Tree, checkout their [Getting started](https://mobx-state-tr
 ## Navigation
 
 React Navigation is pre-configured with the Root Stack Being a Native Stack.
+
+### Pre Configured Navigators
+
+1. Native Stack Navigator
+2. Drawer Navigator (With Custom Drawer Component using React Native Paper)
+3. Material Top Tab Navigator
+4. Material Bottom Tab Navigator
+
+### Navigator Nesting
+
+The aforementioned navigators are nested in the following way:
+
+Root Stack Navigator (navigators/root-stack.tsx)
+|-- Loader Screen (screens/loader.tsx)
+|-- Drawer Navigator (navigators/drawer.tsx)
+| |-- Welcome Screen (screens/welcome.tsx)
+| |-- Top Tab Navigator (navigators/top-tab.tsx)
+| | |-- Screen One (screens/one.tsx)
+| | |-- Screen Two (screens/two.tsx)
+| | |-- Screen Three (screens/three.tsx)
+| |-- Bottom Tab Navigator (navigators/bottom-tab.tsx)
+| | |-- Home Screen (screens/home.tsx)
+| | |-- Details Screen (screens/details.tsx)
 
 ## Deep Link
 

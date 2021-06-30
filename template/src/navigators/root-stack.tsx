@@ -1,28 +1,29 @@
+import { NavigatorScreenParams } from '@react-navigation/native';
 import React from 'react';
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from 'react-native-screens/native-stack';
+import Drawer, { DrawerScreensParams } from '~/navigators/drawer';
 import Loader from '~/screens/loader';
-import Welcome from '~/screens/welcome';
 
-export type RootStackParams = {
+export type RootStackScreensParams = {
   Loader: undefined | { delay?: number; text?: string };
-  Welcome: undefined;
+  Drawer: undefined | NavigatorScreenParams<DrawerScreensParams>;
 };
 
-export type RootStackScreens = keyof RootStackParams;
+export type RootStackScreens = keyof RootStackScreensParams;
 
 export type RootStackScreenProps<T extends RootStackScreens> = NativeStackScreenProps<
-  RootStackParams,
+  RootStackScreensParams,
   T
 >;
 
 export type UseRootStackNavigation<T extends RootStackScreens = 'Loader'> =
-  NativeStackNavigationProp<RootStackParams, T>;
+  NativeStackNavigationProp<RootStackScreensParams, T>;
 
-const { Navigator, Screen } = createNativeStackNavigator<RootStackParams>();
+const { Navigator, Screen } = createNativeStackNavigator<RootStackScreensParams>();
 
 const RootStack = () => (
   <Navigator
@@ -31,7 +32,7 @@ const RootStack = () => (
     }}
   >
     <Screen name="Loader" component={Loader} />
-    <Screen name="Welcome" component={Welcome} />
+    <Screen name="Drawer" component={Drawer} />
   </Navigator>
 );
 

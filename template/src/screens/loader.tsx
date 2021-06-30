@@ -15,7 +15,7 @@ const Loader = observer<RootStackScreenProps<'Loader'>>(({ navigation, route }) 
 
   useEffect(() => {
     if (hydrated) {
-      delay(route.params?.delay).then(() => navigation.replace('Welcome'));
+      delay(route.params?.delay).then(() => navigation.replace('Drawer'));
     }
   }, [hydrated, navigation, route.params?.delay]);
 
