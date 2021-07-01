@@ -12,6 +12,7 @@ const babelLoaderConfiguration = {
   include: [
     path.resolve(__dirname, 'index.js'),
     path.resolve(__dirname, 'src'),
+    path.resolve(__dirname, 'node_modules/react-native-reanimated'),
     path.resolve(__dirname, 'node_modules/react-native-vector-icons'),
   ],
   use: {

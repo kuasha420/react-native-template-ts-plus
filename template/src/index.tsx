@@ -39,6 +39,7 @@ const linking: LinkingOptions<RootStackScreensParams> = {
         },
       },
       Drawer: {
+        path: 'drawer',
         screens: {
           Welcome: 'welcome',
         },
