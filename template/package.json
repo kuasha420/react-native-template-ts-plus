@@ -13,7 +13,8 @@
     "regenerate-bootsplash": "react-native generate-bootsplash src/assets/bootsplash_logo_original.png --background-color=ffffff --logo-width=200 --assets-path=src/assets --webroot-path=web",
     "postversion": "react-native-version",
     "web": "webpack serve --hot",
-    "web:build": "webpack --mode=\"production\""
+    "web:build": "webpack --mode=\"production\"",
+    "web:serve": "serve"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.13",
@@ -56,7 +57,9 @@
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-react-native-web": "^0.16.5",
     "babel-plugin-transform-remove-console": "^6.9.4",
+    "copy-webpack-plugin": "^9.0.1",
     "eslint": "^7.14.0",
+    "html-webpack-plugin": "^5.3.2",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.66.2",
     "react-native-version": "^4.0.0",

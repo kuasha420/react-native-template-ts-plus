@@ -1,16 +1,18 @@
-import 'react-native-gesture-handler';
 import { AppRegistry } from 'react-native';
 import appInfo from './app.json';
 import App from './src';
+import { iconFonts } from './react-native-web.config';
 
-const MaterialCommunityIcons = require('react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf');
-
-const IconsCSS = `
+const IconsCSS = iconFonts
+  .map(
+    (font) => `
 @font-face {
-  font-family: 'MaterialCommunityIcons';
-  src: url(${MaterialCommunityIcons}) format('truetype');
+  font-family: '${font}';
+  src: url(${require(`react-native-vector-icons/Fonts/${font}.ttf`)}) format('truetype');
 }
-`;
+`
+  )
+  .join('\n');
 
 const importIconsCSS = () => {
   const newStyle = document.createElement('style');

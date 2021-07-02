@@ -60,4 +60,4 @@ buck-out/
 /ios/Pods/
 
 # Web 
-build/
+public/

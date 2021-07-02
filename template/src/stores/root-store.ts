@@ -1,5 +1,5 @@
 import { flow, types } from 'mobx-state-tree';
-import getLatestVersion from '~/services/version';
+import getLatestVersion, { defaultVersion } from '~/services/version';
 
 /**
  * Example of a Appwide Global Store

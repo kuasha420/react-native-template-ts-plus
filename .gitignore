@@ -13,4 +13,4 @@ template/android/local.properties
 template/android/app/build/
 
 # Web Generated 
-template/web/build/
+template/public/

@@ -42,6 +42,21 @@ const linking: LinkingOptions<RootStackScreensParams> = {
         path: 'drawer',
         screens: {
           Welcome: 'welcome',
+          BottomTab: {
+            path: 'bottom-tab',
+            screens: {
+              Home: 'home',
+              Details: 'details',
+            },
+          },
+          TopTab: {
+            path: 'top-tab',
+            screens: {
+              One: 'one',
+              Two: 'two',
+              Three: 'three',
+            },
+          },
         },
       },
     },
