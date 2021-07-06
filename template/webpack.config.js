@@ -44,7 +44,7 @@ const assetsLoaderConfig = {
   },
 };
 
-module.exports = {
+const config = {
   mode: 'development',
   devtool: 'source-map',
   devServer: {
@@ -97,4 +97,17 @@ module.exports = {
     },
     extensions: ['.web.tsx', '.web.ts', '.web.jsx', '.web.js', '.tsx', '.ts', '.jsx', '.js'],
   },
+};
+
+module.exports = (env, argv) => {
+  const mode = argv.mode ?? config.mode;
+  config.mode = mode;
+
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      __DEV__: mode === 'development',
+    })
+  );
+
+  return config;
 };
