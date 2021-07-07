@@ -12,7 +12,7 @@
     "type-check": "tsc --noEmit",
     "regenerate-bootsplash": "react-native generate-bootsplash src/assets/bootsplash_logo_original.png --background-color=ffffff --logo-width=200 --assets-path=src/assets --webroot-path=web",
     "postversion": "react-native-version",
-    "web": "webpack serve --hot",
+    "web": "webpack serve",
     "web:build": "webpack --mode=\"production\"",
     "web:serve": "serve"
   },
@@ -47,6 +47,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.66.6",
@@ -67,6 +68,8 @@
     "typescript": "^4.3.2",
     "process": "^0.11.10",
     "url-loader": "^4.1.1",
+    "react-refresh": "^0.10.0",
+    "serve": "^12.0.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"

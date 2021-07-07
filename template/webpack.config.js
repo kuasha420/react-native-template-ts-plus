@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webConfig = require('./react-native-web.config');
 
 // Inspiration from https://github.com/facebook/create-react-app/blob/64df135c29208f08a175c941a0e94d9a56d9e4af/packages/react-dev-utils/getPublicUrlOrPath.js#L47
@@ -31,7 +32,7 @@ const babelLoaderConfiguration = {
     loader: 'babel-loader',
     options: {
       cacheDirectory: true,
-      plugins: ['react-native-web'],
+      plugins: ['react-native-web', 'react-refresh/babel'],
     },
   },
 };
@@ -50,6 +51,7 @@ const config = {
   devServer: {
     contentBase: path.join(__dirname, 'web'),
     historyApiFallback: true,
+    hot: true,
   },
   plugins: [
     new CopyPlugin({
@@ -68,6 +70,7 @@ const config = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'web', 'index.html'),
     }),
+    new ReactRefreshWebpackPlugin(),
   ],
 
   entry: [
