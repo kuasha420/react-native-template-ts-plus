@@ -1,12 +1,12 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const webConfig = require('./react-native-web.config');
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import webConfig from './react-native-web.config';
+import packageJSON from './package.json';
 
-// Inspiration from https://github.com/facebook/create-react-app/blob/64df135c29208f08a175c941a0e94d9a56d9e4af/packages/react-dev-utils/getPublicUrlOrPath.js#L47
-let { homepage } = require(path.resolve(__dirname, 'package.json'));
+let { homepage } = packageJSON;
 let publicPath = '/';
 if (homepage) {
   const stubDomain = 'https://create-react-app.dev';
@@ -17,35 +17,7 @@ if (homepage) {
   publicPath = homepage.startsWith('.') ? homepage : validHomepagePathname;
 }
 
-const modulesToTranspile = webConfig.needsTranspile.map((mod) =>
-  path.resolve(__dirname, 'node_modules', mod)
-);
-
-const babelLoaderConfiguration = {
-  test: /\.(j|t)sx?$/,
-  include: [
-    path.resolve(__dirname, 'index.web.js'),
-    path.resolve(__dirname, 'src'),
-    ...modulesToTranspile,
-  ],
-  use: {
-    loader: 'babel-loader',
-    options: {
-      cacheDirectory: true,
-      plugins: ['react-native-web', 'react-refresh/babel'],
-    },
-  },
-};
-
-const assetsLoaderConfig = {
-  test: /\.(gif|jpe?g|png|svg|ttf)$/,
-  type: 'asset',
-  generator: {
-    filename: 'assets/[name][ext]',
-  },
-};
-
-const config = {
+const config: webpack.Configuration = {
   mode: 'development',
   devtool: 'source-map',
   devServer: {
@@ -86,7 +58,30 @@ const config = {
   },
 
   module: {
-    rules: [babelLoaderConfiguration, assetsLoaderConfig],
+    rules: [
+      {
+        test: /\.(j|t)sx?$/,
+        include: [
+          path.resolve(__dirname, 'index.web.js'),
+          path.resolve(__dirname, 'src'),
+          ...webConfig.needsTranspile.map((mod) => path.resolve(__dirname, 'node_modules', mod)),
+        ],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            plugins: ['react-native-web', 'react-refresh/babel'],
+          },
+        },
+      },
+      {
+        test: /\.(gif|jpe?g|png|svg|ttf)$/,
+        type: 'asset',
+        generator: {
+          filename: 'assets/[name][ext]',
+        },
+      },
+    ],
   },
 
   resolve: {
@@ -102,11 +97,14 @@ const config = {
   },
 };
 
-module.exports = (env, argv) => {
+const configBuilder = (
+  env: Record<string, string>,
+  argv: { mode: webpack.Configuration['mode'] }
+) => {
   const mode = argv.mode ?? config.mode;
   config.mode = mode;
 
-  config.plugins.push(
+  config.plugins?.push(
     new webpack.DefinePlugin({
       __DEV__: mode === 'development',
     })
@@ -114,3 +112,5 @@ module.exports = (env, argv) => {
 
   return config;
 };
+
+export default configBuilder;

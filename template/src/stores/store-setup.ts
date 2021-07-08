@@ -1,4 +1,3 @@
-// import { defaultVersion } from '~/services/version';
 import createPersistentStore from 'mst-persistent-store';
 import { defaultVersion } from '~/services/version';
 import RootStore from '~/stores/root-store';
