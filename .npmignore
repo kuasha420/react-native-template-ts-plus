@@ -23,3 +23,6 @@ template/android/.gradle
 template/android/.idea
 template/android/local.properties
 template/android/app/build/
+
+# Web Generated
+template/public/
