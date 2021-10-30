@@ -50,7 +50,7 @@ const TopTabs = () => {
         inactiveTintColor: theme.colors.disabled,
         activeTintColor: theme.colors.text,
         indicatorStyle: {
-          backgroundColor: theme.colors.notification,
+          backgroundColor: theme.colors.primary,
         },
       };
     }
