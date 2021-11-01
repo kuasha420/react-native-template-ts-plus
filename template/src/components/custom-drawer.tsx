@@ -2,8 +2,9 @@ import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Avatar, Drawer, Text, ToggleButton } from 'react-native-paper';
+import { Avatar, Drawer, Text, ToggleButton, useTheme } from 'react-native-paper';
 import FixedContainer from '~/components/fixed-container';
+import { IMAGESIZE, WIDTH } from '~/constant';
 import useIsDarkTheme from '~/hooks/use-is-dark-theme';
 import { useRootStore } from '~/stores/store-setup';
 
@@ -16,20 +17,21 @@ const iconProps = {
 const CustomDrawer = observer<DrawerContentComponentProps>((props) => {
   const { setUserColorScheme, currentColorScheme } = useRootStore();
   const [isDark, isSystem] = useIsDarkTheme();
+  const { colors } = useTheme();
   return (
     <FixedContainer style={styles.drawer} edges={['top', 'bottom', 'left']}>
       <Drawer.Section style={styles.container}>
         <Avatar.Image
           style={styles.avatar}
-          size={48}
+          size={IMAGESIZE / 9}
           source={require('~/assets/bootsplash_logo.png')}
         />
-        <View style={styles.contents}>
+        <View>
           <Text style={styles.title}>Welcome</Text>
           <Text style={styles.title2}>src/components/custom-drawer.tsx</Text>
         </View>
       </Drawer.Section>
-      <Drawer.Section>
+      <Drawer.Section style={[styles.drawerItemTopColor, { borderColor: colors.background }]}>
         {props.state.routes.map((route, i) => (
           <Drawer.Item
             key={route.key}
@@ -40,7 +42,14 @@ const CustomDrawer = observer<DrawerContentComponentProps>((props) => {
           />
         ))}
       </Drawer.Section>
-      <Drawer.Section style={styles.footer}>
+      <Drawer.Section
+        style={[
+          styles.footer,
+          {
+            borderColor: colors.background,
+          },
+        ]}
+      >
         <ToggleButton.Row
           style={styles.toggle}
           onValueChange={(value) => setUserColorScheme(value as any)}
@@ -63,27 +72,23 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    paddingHorizontal: 10,
+    paddingVertical: WIDTH / 20,
     flexDirection: 'row',
-    paddingVertical: 10,
-  },
-  contents: {
-    marginLeft: 10,
+    justifyContent: 'space-around',
   },
   avatar: {
     backgroundColor: 'transparent',
   },
   title: {
-    marginLeft: 15,
     fontSize: 24,
     fontWeight: 'bold',
   },
   title2: {
-    marginLeft: 15,
     fontSize: 11,
   },
   footer: {
     marginTop: 'auto',
+    borderTopWidth: 1,
   },
   toggle: {
     alignItems: 'center',
@@ -94,6 +99,9 @@ const styles = StyleSheet.create({
   },
   theme: {
     marginLeft: 9,
+  },
+  drawerItemTopColor: {
+    borderTopWidth: 1,
   },
 });
 
