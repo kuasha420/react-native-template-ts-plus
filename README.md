@@ -47,7 +47,7 @@ See the below table to find out which version of the template to use.
 
 | React Native | Template |
 | ------------ | -------- |
-| 0.65.0       | 2.0.\*   |
+| 0.66.0       | 2.0.\*   |
 | 0.64.2       | 1.1.\*   |
 | 0.64.1       | 1.0.\*   |
 
@@ -61,7 +61,7 @@ This seems to happen on APFS Case Sensitive Filesystems when Flipper is enabled.
 
 ##### Solution 1 - Create Symbolic Links
 
-Thanks to [felexx90](https://github.com/facebook/react-native/issues/28409#issuecomment-833182353) for providing this solution.
+Thanks to [felexx90](https://github.com/facebook/react-native/issues/28409#issuecomment-833182353) for providing this solution..
 
 Edit `ios/Podfile` and add the following lines inside `post_install`.
 
