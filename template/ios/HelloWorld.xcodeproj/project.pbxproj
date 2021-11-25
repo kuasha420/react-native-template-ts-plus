@@ -11,9 +11,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		F176E15C26588C82000DFD75 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F176E15B26588C82000DFD75 /* BootSplash.storyboard */; };
 		92733A40E4341AB5AFCBE4BB /* libPods-HelloWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6319DCC803851DB0F6747971 /* libPods-HelloWorld.a */; };
 		B69F6F48BBFB381584D021F3 /* libPods-HelloWorld-HelloWorldTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EE4169BD940D39F0A0DCCF /* libPods-HelloWorld-HelloWorldTests.a */; };
+		F176E15C26588C82000DFD75 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F176E15B26588C82000DFD75 /* BootSplash.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +106,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7076AFA54A6D98E31BDDF3AD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				51DDC52BB11F247A38D330A5 /* Pods-HelloWorld.debug.xcconfig */,
+				C4B4AD1F94CFC5C0FE3BAA50 /* Pods-HelloWorld.release.xcconfig */,
+				724F2BC7C97CE50C0F57478D /* Pods-HelloWorld-HelloWorldTests.debug.xcconfig */,
+				C904101816ED5721CF5ADEB8 /* Pods-HelloWorld-HelloWorldTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,18 +147,6 @@
 				00E356EE1AD99517003FC87E /* HelloWorldTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		7076AFA54A6D98E31BDDF3AD /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				51DDC52BB11F247A38D330A5 /* Pods-HelloWorld.debug.xcconfig */,
-				C4B4AD1F94CFC5C0FE3BAA50 /* Pods-HelloWorld.release.xcconfig */,
-				724F2BC7C97CE50C0F57478D /* Pods-HelloWorld-HelloWorldTests.debug.xcconfig */,
-				C904101816ED5721CF5ADEB8 /* Pods-HelloWorld-HelloWorldTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,23 +264,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
-		};
-		2C7D6E6E80208CBB5F628C10 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HelloWorld/Pods-HelloWorld-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HelloWorld/Pods-HelloWorld-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HelloWorld/Pods-HelloWorld-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		35CC43FAEBCA9AC254B13C01 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

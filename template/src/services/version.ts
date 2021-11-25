@@ -7,7 +7,7 @@ const getLatestVersion = async () => {
     return version;
   } catch (error) {
     console.log(error);
-    return '1.0.0';
+    return '2.0.0';
   }
 };
 
