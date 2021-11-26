@@ -5,11 +5,11 @@ import { Button, Headline } from 'react-native-paper';
 import { Edge } from 'react-native-safe-area-context';
 import CustomHeader from '~/components/custom-header';
 import FixedContainer from '~/components/fixed-container';
-import { BottomTabScreenProps } from '~/navigators/bottom-tab';
+import { BottomTabScreenProp } from '~/navigators/bottom-tab';
 
 const edges: Edge[] = ['right', 'left'];
 
-const Details = observer<BottomTabScreenProps<'Details'>>(({ navigation }) => {
+const Details = observer<BottomTabScreenProp<'Details'>>(({ navigation }) => {
   return (
     <FixedContainer edges={edges}>
       <CustomHeader

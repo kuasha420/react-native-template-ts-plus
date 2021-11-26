@@ -7,12 +7,12 @@ import Container from '~/components/container';
 import CustomHeader from '~/components/custom-header';
 import PrimaryText from '~/components/primary-text';
 import useIsDarkTheme from '~/hooks/use-is-dark-theme';
-import { DrawerScreenProps } from '~/navigators/drawer';
+import { DrawerScreenProp } from '~/navigators/drawer';
 import { useRootStore } from '~/stores/store-setup';
 
 const edges: Edge[] = ['right', 'bottom', 'left'];
 
-const Welcome = observer<DrawerScreenProps<'Welcome'>>(({ navigation }) => {
+const Welcome = observer<DrawerScreenProp<'Welcome'>>(({ navigation }) => {
   const { version, latestVersion, outdated, setUserColorScheme, currentColorScheme } =
     useRootStore();
 

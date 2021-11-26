@@ -1,17 +1,13 @@
-import CustomDrawer from '~/components/custom-drawer';
-import { createDrawerNavigator, DrawerNavigationProp } from '@react-navigation/drawer';
-import {
-  CompositeNavigationProp,
-  NavigatorScreenParams,
-  RouteProp,
-} from '@react-navigation/native';
+import { createDrawerNavigator, DrawerScreenProps } from '@react-navigation/drawer';
+import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
-import { RootStackScreensParams } from '~/navigators/root-stack';
-import Welcome from '~/screens/welcome';
+import CustomDrawer from '~/components/custom-drawer';
 import BottomTab, { BottomTabScreensParams } from '~/navigators/bottom-tab';
+import { RootStackScreensParams } from '~/navigators/root-stack';
 import TopTabNavigator, { TopTabScreensParams } from '~/navigators/top-tab';
+import Welcome from '~/screens/welcome';
 
 export type DrawerScreensParams = {
   Welcome: undefined;
@@ -21,21 +17,21 @@ export type DrawerScreensParams = {
 
 export type DrawerScreens = keyof DrawerScreensParams;
 
-export type DrawerScreenProps<T extends DrawerScreens> = {
-  navigation: CompositeNavigationProp<
-    DrawerNavigationProp<DrawerScreensParams, T>,
-    NativeStackNavigationProp<RootStackScreensParams>
-  >;
-  route: RouteProp<DrawerScreensParams, T>;
-};
+export type DrawerScreenProp<T extends DrawerScreens> = CompositeScreenProps<
+  DrawerScreenProps<DrawerScreensParams, T>,
+  NativeStackScreenProps<RootStackScreensParams>
+>;
 
 const { Navigator, Screen } = createDrawerNavigator<DrawerScreensParams>();
 
 const Drawer = () => (
   <Navigator
-    lazy={true}
     drawerContent={(props) => <CustomDrawer {...props} />}
-    drawerStyle={styles.drawer}
+    screenOptions={{
+      headerShown: false,
+      lazy: true,
+      drawerStyle: styles.drawer,
+    }}
   >
     <Screen name="Welcome" component={Welcome} options={{ drawerIcon: () => 'home' }} />
     <Screen

@@ -2,9 +2,9 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Headline, HelperText } from 'react-native-paper';
-import { TopTabScreenProps } from '~/navigators/top-tab';
+import { TopTabScreenProp } from '~/navigators/top-tab';
 
-const One = observer<TopTabScreenProps<'One'>>(({ navigation }) => {
+const One = observer<TopTabScreenProp<'One'>>(({ navigation }) => {
   return (
     <View style={styles.center}>
       <Headline>Top Tab Screen One</Headline>
