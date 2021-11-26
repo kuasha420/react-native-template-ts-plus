@@ -5699,20 +5699,20 @@ mobx-devtools-mst@0.9.30:
   resolved "https://registry.yarnpkg.com/mobx-devtools-mst/-/mobx-devtools-mst-0.9.30.tgz#0d1cad8b3d97e1f3f94bb9afb701cd9c8b5b164d"
   integrity sha512-6fIYeFG4xT4syIeKddmK55zQbc3ZZZr/272/cCbfaAAM5YiuFdteGZGUgdsz8wxf/mGxWZbFOM3WmASAnpwrbw==
 
-mobx-react-lite@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-3.2.0.tgz#331d7365a6b053378dfe9c087315b4e41c5df69f"
-  integrity sha512-q5+UHIqYCOpBoFm/PElDuOhbcatvTllgRp3M1s+Hp5j0Z6XNgDbgqxawJ0ZAUEyKM8X1zs70PCuhAIzX1f4Q/g==
+mobx-react-lite@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-3.2.2.tgz#cee5f09e6b0e4d2705d87276baf1de74d997fa33"
+  integrity sha512-FxJJMqmHcnQYOVVs2DdjNHioGlFsXF5/9VHztS9NAfIT3DYrxNZzVi119Zr/OmlWKkWNkAsssSNzPkqautfL4A==
 
-mobx-state-tree@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-5.0.1.tgz#d495725fe11075d8fde8f02ab65db6736b44e014"
-  integrity sha512-XZafwF1sJe6sp8L1kgf9Tz0SLo/UPf2pxsonnHaBQNsqbebw+0GC+IT3WxPEIe0/aQ73q4nY4SRgW1uyfd1KRA==
+mobx-state-tree@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-5.0.5.tgz#da990703c8aa30c33ead4977115e13448427b507"
+  integrity sha512-SM0CZ0Aj8qMYaLEkzOA7TOqSqdGQUqP8qT9+w4lvnvwB1EGmK22z3drullQzFq20RfkLOU20cn+Us0EOmK+9Sg==
 
-mobx@^6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.3.1.tgz#6d2e519e7bb0275dd5b9b1fa81475894e85aad99"
-  integrity sha512-by0VQNBltxLKcQ0uIz2h2mnVv1ZV0ief8mRRw+0k7mL2vSS3806rZg42bt8Vy78szaODtij/5iWIGvc46ZC3Cw==
+mobx@^6.3.7:
+  version "6.3.7"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.3.7.tgz#9ed85561e86da45141134c8fa20cf5f9c7246c3d"
+  integrity sha512-X7yU7eOEyxIBk4gjIi2UIilwdw48gXh0kcZ5ex3Rc+COJsJmJ4SNpf42uYea3aUqb1hedTv5xzJrq5Q55p0P5g==
 
 mockdate@^3.0.2:
   version "3.0.5"
@@ -5734,10 +5734,10 @@ ms@2.1.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-mst-persistent-store@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/mst-persistent-store/-/mst-persistent-store-1.2.1.tgz#63aaa1d4e2d30247022b77ccf16056c5324ee93d"
-  integrity sha512-BZskorC06ThiuNjULL/8XtE3o4wPjfSbP89e3CeGE588QGgrG2Aa/xm+yb3xYM2hV79BypQE9++MXfGLHUR20A==
+mst-persistent-store@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/mst-persistent-store/-/mst-persistent-store-1.2.2.tgz#c136affff8a3742d9f55276abec606acb5ac4c10"
+  integrity sha512-stDInNVYicqGfqB/cMkB2hvDzhr3YyCA6gHw1cNA5EPEquc3Yu96s2SGvmI2KAQ3+aYdDNaRmR6cq6oa0fcwfA==
   dependencies:
     mobx-devtools-mst "0.9.30"
     type-fest "1.0.2"
