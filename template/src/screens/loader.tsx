@@ -5,11 +5,11 @@ import RNBootSplash from 'react-native-bootsplash';
 import { ActivityIndicator, Text, useTheme } from 'react-native-paper';
 import FixedContainer from '~/components/fixed-container';
 import PrimaryText from '~/components/primary-text';
-import { RootStackScreenProps } from '~/navigators/root-stack';
+import { RootStackScreenProp } from '~/navigators/root-stack';
 import { useRootStore } from '~/stores/store-setup';
 import delay from '~/utils/delay';
 
-const Loader = observer<RootStackScreenProps<'Loader'>>(({ navigation, route }) => {
+const Loader = observer<RootStackScreenProp<'Loader'>>(({ navigation, route }) => {
   const { hydrate, hydrated, version } = useRootStore();
   const theme = useTheme();
 

@@ -1,17 +1,15 @@
-import { DrawerNavigationProp } from '@react-navigation/drawer';
 import {
   createMaterialTopTabNavigator,
-  MaterialTopTabNavigationProp,
+  MaterialTopTabNavigationOptions,
+  MaterialTopTabScreenProps,
 } from '@react-navigation/material-top-tabs';
-import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
+import { CompositeScreenProps } from '@react-navigation/native';
 import React, { useMemo } from 'react';
 import { overlay, useTheme } from 'react-native-paper';
 import { Edge } from 'react-native-safe-area-context';
-import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
 import CustomHeader from '~/components/custom-header';
 import FixedContainer from '~/components/fixed-container';
-import { DrawerScreenProps, DrawerScreensParams } from '~/navigators/drawer';
-import { RootStackScreensParams } from '~/navigators/root-stack';
+import { DrawerScreenProp } from '~/navigators/drawer';
 import One from '~/screens/one';
 import Three from '~/screens/three';
 import Two from '~/screens/two';
@@ -24,16 +22,10 @@ export type TopTabScreensParams = {
 
 export type TopTabScreens = keyof TopTabScreensParams;
 
-export interface TopTabScreenProps<T extends TopTabScreens> {
-  navigation: CompositeNavigationProp<
-    MaterialTopTabNavigationProp<TopTabScreensParams, T>,
-    CompositeNavigationProp<
-      DrawerNavigationProp<DrawerScreensParams>,
-      NativeStackNavigationProp<RootStackScreensParams>
-    >
-  >;
-  route: RouteProp<TopTabScreensParams, T>;
-}
+export type TopTabScreenProp<T extends TopTabScreens> = CompositeScreenProps<
+  MaterialTopTabScreenProps<TopTabScreensParams, T>,
+  DrawerScreenProp<'TopTab'>
+>;
 
 const { Navigator, Screen } = createMaterialTopTabNavigator<TopTabScreensParams>();
 
@@ -41,34 +33,33 @@ const TopTabs = () => {
   const theme = useTheme();
 
   const tabBarOptions = useMemo(() => {
-    if (theme.dark) {
-      return {
-        style: {
-          backgroundColor: overlay(4, theme.colors.surface),
-        },
+    const options: MaterialTopTabNavigationOptions = theme.dark
+      ? {
+          tabBarStyle: {
+            backgroundColor: overlay(4, theme.colors.surface),
+          },
+          tabBarInactiveTintColor: theme.colors.disabled,
+          tabBarActiveTintColor: theme.colors.text,
+          tabBarIndicatorStyle: {
+            backgroundColor: theme.colors.primary,
+          },
+        }
+      : {
+          tabBarStyle: {
+            backgroundColor: theme.colors.primary,
+          },
 
-        inactiveTintColor: theme.colors.disabled,
-        activeTintColor: theme.colors.text,
-        indicatorStyle: {
-          backgroundColor: theme.colors.primary,
-        },
-      };
-    }
-    return {
-      style: {
-        backgroundColor: theme.colors.primary,
-      },
-
-      inactiveTintColor: theme.colors.surface,
-      activeTintColor: theme.colors.background,
-      indicatorStyle: {
-        backgroundColor: theme.colors.notification,
-      },
-    };
+          tabBarInactiveTintColor: theme.colors.surface,
+          tabBarActiveTintColor: theme.colors.background,
+          tabBarIndicatorStyle: {
+            backgroundColor: theme.colors.notification,
+          },
+        };
+    return options;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme.dark]);
   return (
-    <Navigator tabBarOptions={tabBarOptions}>
+    <Navigator screenOptions={tabBarOptions}>
       <Screen name="One" component={One} />
       <Screen name="Two" component={Two} />
       <Screen name="Three" component={Three} />
@@ -78,7 +69,7 @@ const TopTabs = () => {
 
 const edges: Edge[] = ['right', 'bottom', 'left'];
 
-const TopTabNavigator: React.FC<DrawerScreenProps<'TopTab'>> = ({ navigation }) => {
+const TopTabNavigator: React.FC<DrawerScreenProp<'TopTab'>> = ({ navigation }) => {
   return (
     <FixedContainer edges={edges}>
       <CustomHeader

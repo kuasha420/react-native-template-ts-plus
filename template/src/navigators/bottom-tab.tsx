@@ -1,17 +1,14 @@
-import { DrawerNavigationProp } from '@react-navigation/drawer';
 import {
   createMaterialBottomTabNavigator,
-  MaterialBottomTabNavigationProp,
+  MaterialBottomTabScreenProps,
 } from '@react-navigation/material-bottom-tabs';
-import { CompositeNavigationProp, RouteProp, useFocusEffect } from '@react-navigation/native';
+import { CompositeScreenProps, useFocusEffect } from '@react-navigation/native';
 import React, { useCallback } from 'react';
 import { Platform } from 'react-native';
 import { changeBarColors } from 'react-native-immersive-bars';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
 import useIsDarkTheme from '~/hooks/use-is-dark-theme';
-import { DrawerScreensParams } from '~/navigators/drawer';
-import { RootStackScreensParams } from '~/navigators/root-stack';
+import { DrawerScreenProp } from '~/navigators/drawer';
 import Details from '~/screens/details';
 import Home from '~/screens/home';
 
@@ -22,16 +19,10 @@ export type BottomTabScreensParams = {
 
 export type BottomTabScreens = keyof BottomTabScreensParams;
 
-export interface BottomTabScreenProps<T extends BottomTabScreens> {
-  navigation: CompositeNavigationProp<
-    MaterialBottomTabNavigationProp<BottomTabScreensParams, T>,
-    CompositeNavigationProp<
-      DrawerNavigationProp<DrawerScreensParams>,
-      NativeStackNavigationProp<RootStackScreensParams>
-    >
-  >;
-  route: RouteProp<BottomTabScreensParams, T>;
-}
+export type BottomTabScreenProp<T extends BottomTabScreens> = CompositeScreenProps<
+  MaterialBottomTabScreenProps<BottomTabScreensParams, T>,
+  DrawerScreenProp<'BottomTab'>
+>;
 
 const { Navigator, Screen } = createMaterialBottomTabNavigator<BottomTabScreensParams>();
 

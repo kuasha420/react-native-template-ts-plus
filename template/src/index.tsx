@@ -11,13 +11,13 @@ import { changeBarColors } from 'react-native-immersive-bars';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context';
 import useIsDarkTheme from '~/hooks/use-is-dark-theme';
-import RootStack from '~/navigators/root-stack';
+import RootStack, { RootStackScreensParams } from '~/navigators/root-stack';
 import { RootStoreProvider, useRootStore } from '~/stores/store-setup';
 import DarkTheme from '~/themes/dark-theme';
 import DefaultTheme from '~/themes/default-theme';
 import delay from '~/utils/delay';
 
-const linking: LinkingOptions = {
+const linking: LinkingOptions<RootStackScreensParams> = {
   prefixes: [
     /* your linking prefixes */
     'helloworld://',
@@ -25,9 +25,8 @@ const linking: LinkingOptions = {
   ],
   config: {
     /* configuration for matching screens with paths */
+    initialRouteName: 'Loader',
     screens: {
-      initialRouteName: 'Loader',
-      Welcome: 'welcome',
       Loader: {
         path: 'loader/:delay?/:text?',
         parse: {
@@ -39,13 +38,18 @@ const linking: LinkingOptions = {
           text: (text) => encodeURIComponent(text),
         },
       },
+      Drawer: {
+        screens: {
+          Welcome: 'welcome',
+        },
+      },
     },
   },
 };
 
 const Main = observer(() => {
   const { hydrate } = useRootStore();
-  const nav = useRef<NavigationContainerRef>(null);
+  const nav = useRef<NavigationContainerRef<RootStackScreensParams>>(null);
   const [isDark] = useIsDarkTheme();
   const theme = useMemo(() => {
     if (isDark) {
