@@ -80,6 +80,9 @@ const Welcome = observer<DrawerScreenProps<'Welcome'>>(({ navigation }) => {
       </Animated.View>
       <View style={styles.container}>
         <Headline style={styles.headline}>Thank For Using React Native TS-Plus Template</Headline>
+        <Text style={[styles.disclaimer, { color: theme.colors.placeholder }]}>
+          This is not an official template!
+        </Text>
         <Paragraph style={styles.pitch}>
           This is a pre-configured template. Most of the tedious stuff of starting a new project has
           been done for you. We hope it will allow you to be more productive and waste less time on
@@ -153,6 +156,10 @@ const styles = StyleSheet.create({
   toggle: {
     marginBottom: 10,
     justifyContent: 'center',
+  },
+  disclaimer: {
+    marginVertical: 10,
+    textAlign: 'center',
   },
 });
 
