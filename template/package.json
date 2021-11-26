@@ -27,7 +27,7 @@
     "react-native": "0.66.3",
     "react-native-bootsplash": "^3.2.3",
     "react-native-gesture-handler": "^1.10.3",
-    "react-native-immersive-bars": "1.0.2",
+    "react-native-immersive-bars": "^1.0.4",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-pager-view": "^5.4.9",
     "react-native-paper": "^4.10.1",
