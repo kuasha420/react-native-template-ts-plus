@@ -57,6 +57,13 @@ public class MainActivity extends ReactActivity {
       reactRootView.setIsFabric(BuildConfig.IS_NEW_ARCHITECTURE_ENABLED);
       return reactRootView;
     }
+
+    // React Native Bootsplash
+    @Override
+    protected void loadApp(String appKey) {
+      RNBootSplash.init(getPlainActivity());
+      super.loadApp(appKey);
+    }
   }
 
   @Override
@@ -74,8 +81,5 @@ public class MainActivity extends ReactActivity {
     // Reaact Native Screens 
     // See: https://github.com/software-mansion/react-native-screens/issues/17#issuecomment-424704633
     super.onCreate(null);
-
-    // React Native Bootsplash
-    RNBootSplash.init(R.drawable.bootsplash, MainActivity.this);
   }
 }
