@@ -9,6 +9,7 @@
         <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
         <item name="android:windowLightNavigationBar">?attr/isLightTheme</item>
         <item name="android:enforceNavigationBarContrast">false</item>
+        <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
     </style>
 
     <!-- Add the following lines (BootTheme should inherit from AppTheme) -->

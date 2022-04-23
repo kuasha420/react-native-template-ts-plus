@@ -4,6 +4,7 @@ node_modules/
 # IOS Generated
 template/ios/Podfile.lock 
 template/ios/Pods/
+template/vendor/bundle/
 template/ios/HelloWorld.xcworkspace/xcuserdata/
 
 # Android Generated
