@@ -9,7 +9,7 @@
 - [Troubleshooting](#troubleshooting)
   - [IOS](#ios)
     - [fatal error: 'openssl/opensslv.h' file not found](#fatal-error-opensslopensslvh-file-not-found)
-      - [Solution 1 - Create Symbolic Links](#solution-1---create-symbolic-links)
+      - [Solution 1 - Create Symbolic](#solution-1---create-symbolic)
       - [Solution 2 - Disable Flipper](#solution-2---disable-flipper)
 - [Contributing](#contributing)
 - [License](#license)
@@ -60,7 +60,9 @@ See the below table to find out which version of the template to use.
 
 This seems to happen on APFS Case Sensitive Filesystems when Flipper is enabled.
 
-##### Solution 1 - Create Symbolic Links
+##### Solution 1 - Create Symbolic
+
+> This should no longer happen on RN 0.68.1 and up (Template Version 3.0.0+).
 
 Thanks to [felexx90](https://github.com/facebook/react-native/issues/28409#issuecomment-833182353) for providing this solution.
 
