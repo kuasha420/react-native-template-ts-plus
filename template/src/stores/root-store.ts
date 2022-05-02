@@ -7,8 +7,8 @@ import getLatestVersion from '~/services/version';
 
 const RootStore = types
   .model('RootStore', {
-    version: '2.0.0',
-    latestVersion: '2.0.0',
+    version: '3.0.1',
+    latestVersion: '3.0.1',
     userColorScheme: types.maybeNull(types.union(types.literal('light'), types.literal('dark'))),
     hydrated: false,
   })
