@@ -14,8 +14,12 @@ template/.editorconfig
 template/yarn.lock
 
 # IOS Generated
+template/.bundle
+template/.ruby-version
+template/ios/build
 template/ios/Podfile.lock 
 template/ios/Pods/
+template/vendor/bundle/
 template/ios/HelloWorld.xcworkspace/xcuserdata/
 
 # Android Generated

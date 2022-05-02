@@ -47,6 +47,7 @@ See the below table to find out which version of the template to use.
 
 | React Native | Template |
 | ------------ | -------- |
+| 0.68.1       | 3.0.\*   |
 | 0.66.3       | 2.0.\*   |
 | 0.64.2       | 1.1.\*   |
 | 0.64.1       | 1.0.\*   |
@@ -56,6 +57,8 @@ See the below table to find out which version of the template to use.
 ### IOS
 
 #### fatal error: 'openssl/opensslv.h' file not found
+
+> This should no longer happen on RN 0.68.1 and up (Template Version 3.0.0+).
 
 This seems to happen on APFS Case Sensitive Filesystems when Flipper is enabled.
 

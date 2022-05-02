@@ -2,8 +2,10 @@ node_modules/
 .DS_Store
 
 # IOS Generated
+template/ios/build
 template/ios/Podfile.lock 
 template/ios/Pods/
+template/vendor/bundle/
 template/ios/HelloWorld.xcworkspace/xcuserdata/
 
 # Android Generated

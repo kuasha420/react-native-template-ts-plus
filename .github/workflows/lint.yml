@@ -1,4 +1,4 @@
-name: Code Linting and Type Check
+name: Code Linting and Type Checking
 
 on:
   push:
@@ -40,7 +40,7 @@ concurrency:
 
 jobs:
   lint:
-    name: Linting and Type Checking
+    name: Code Linting and Type Checking
     runs-on: ubuntu-latest
     timeout-minutes: 20
     defaults:
@@ -52,6 +52,7 @@ jobs:
         with:
           node-version-file: "template/.nvmrc"
           cache: "yarn"
+          cache-dependency-path: template/yarn.lock
       - name: Install dependencies
         run: yarn
       - name: Run ESLint

@@ -7,11 +7,8 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
-
-// For React Native Gensute Handler
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
-import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
 // For React Native Bootsplash
 import com.zoontek.rnbootsplash.RNBootSplash;
@@ -30,15 +27,32 @@ public class MainActivity extends ReactActivity {
     return "HelloWorld";
   }
 
-  // React Native Gensute Handler
+    /**
+   * Returns the instance of the {@link ReactActivityDelegate}. There the RootView is created and
+   * you can specify the rendered you wish to use (Fabric or the older renderer).
+   */
   @Override
   protected ReactActivityDelegate createReactActivityDelegate() {
-    return new ReactActivityDelegate(this, getMainComponentName()) {
-      @Override
-      protected ReactRootView createRootView() {
-       return new RNGestureHandlerEnabledRootView(MainActivity.this);
-      }
-    };
+    return new MainActivityDelegate(this, getMainComponentName());
+  }
+  public static class MainActivityDelegate extends ReactActivityDelegate {
+    public MainActivityDelegate(ReactActivity activity, String mainComponentName) {
+      super(activity, mainComponentName);
+    }
+    @Override
+    protected ReactRootView createRootView() {
+      ReactRootView reactRootView = new ReactRootView(getContext());
+      // If you opted-in for the New Architecture, we enable the Fabric Renderer.
+      reactRootView.setIsFabric(BuildConfig.IS_NEW_ARCHITECTURE_ENABLED);
+      return reactRootView;
+    }
+
+    // React Native Bootsplash
+    @Override
+    protected void loadApp(String appKey) {
+      RNBootSplash.init(getPlainActivity());
+      super.loadApp(appKey);
+    }
   }
 
   @Override
@@ -56,8 +70,5 @@ public class MainActivity extends ReactActivity {
     // Reaact Native Screens 
     // See: https://github.com/software-mansion/react-native-screens/issues/17#issuecomment-424704633
     super.onCreate(null);
-
-    // React Native Bootsplash
-    RNBootSplash.init(R.drawable.bootsplash, MainActivity.this);
   }
 }
