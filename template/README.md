@@ -195,7 +195,7 @@ You can use `uri-scheme` to test deep links on both ios and android.
 npx uri-scheme open helloworld://loader/3000/Test_Deep_Link --android
 npx uri-scheme open helloworld://loader/3000/Test_Deep_Link --ios
 
-px uri-scheme open https://www.helloworld.com/loader/3000/Test_Deep_Link --android
+npx uri-scheme open https://www.helloworld.com/loader/3000/Test_Deep_Link --android
 npx uri-scheme open https://www.helloworld.com/loader/3000/Test_Deep_Link --ios
 ```
 
