@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - ".github/workflows/lint.yml"
+      - ".github/workflows/android.yml"
       - "**.js"
       - "**.json"
       - "**.ts"
@@ -20,15 +20,12 @@ on:
     branches:
       - master
     paths:
-      - ".github/workflows/lint.yml"
+      - ".github/workflows/android.yml"
       - "**.js"
       - "**.json"
       - "**.ts"
       - "**.tsx"
-      - "template/.eslint*"
-      - "template/.prettier*"
       - "template/package.json"
-      - "template/tsconfig.json"
       - "template/yarn.lock"
       - "template/android/**"
     types:
