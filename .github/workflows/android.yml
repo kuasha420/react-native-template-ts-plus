@@ -1,4 +1,4 @@
-name: Code Linting and Type Checking
+name: Android Build
 
 on:
   push:
@@ -15,6 +15,7 @@ on:
       - "template/package.json"
       - "template/tsconfig.json"
       - "template/yarn.lock"
+      - "template/android/**"
   pull_request:
     branches:
       - master
@@ -29,18 +30,19 @@ on:
       - "template/package.json"
       - "template/tsconfig.json"
       - "template/yarn.lock"
+      - "template/android/**"
     types:
       - opened
       - reopened
       - synchronize
 
 concurrency:
-  group: lint-${{ github.ref }}
+  group: android-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   lint:
-    name: Code Linting and Type Checking
+    name: Android Build
     runs-on: ubuntu-latest
     timeout-minutes: 20
     defaults:
@@ -55,9 +57,29 @@ jobs:
           node-version-file: "template/.nvmrc"
           cache: "yarn"
           cache-dependency-path: template/yarn.lock
+      - name: Setup JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: "11"
+      - name: Cache Gradle Wrapper
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+      - name: Cache Gradle Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-caches-
       - name: Install dependencies
         run: yarn
-      - name: Run ESLint
-        run: yarn lint
-      - name: Run TypeScript Compiler (TSC)
-        run: yarn type-check
+      - name: Android Release Build
+        run: cd android && ./gradlew assembleRelease --no-daemon
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: helloworld-app-release.apk
+          path: template/android/app/build/outputs/apk/release/app-release.apk
