@@ -82,4 +82,4 @@ jobs:
       - name: Install Pods
         run: cd ios && pod install --repo-update && cd ..
       - name: IOS Release Build
-        run: cd ios && xcodebuild -workspace HelloWorld.xcworkspace -configuration Release -scheme HelloWorld -destination 'platform=iOS Simulator,name=iPhone 13' -quiet
+        run: yarn ios --configuration Release
