@@ -58,4 +58,5 @@ buck-out/
 
 # Ruby / CocoaPods
 /ios/Pods/
+/ios/openssl.framework
 /vendor/bundle/

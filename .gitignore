@@ -2,6 +2,7 @@ node_modules/
 .DS_Store
 
 # IOS Generated
+template/ios/openssl.framework
 template/ios/build
 template/ios/Podfile.lock 
 template/ios/Pods/
