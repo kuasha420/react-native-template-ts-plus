@@ -69,7 +69,7 @@ jobs:
         with:
           bundler-cache: true
           working-directory: template
-      name: Pods cache
+      - name: Pods cache
         uses: actions/cache@v2
         with:
           path: |
