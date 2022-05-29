@@ -38,7 +38,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
+  android:
     name: Android Build
     runs-on: ubuntu-latest
     timeout-minutes: 20

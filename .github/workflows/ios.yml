@@ -48,7 +48,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
+  ios:
     name: IOS Build
     runs-on: macOS-latest
     timeout-minutes: 20
