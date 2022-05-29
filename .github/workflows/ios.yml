@@ -1,0 +1,85 @@
+name: IOS Build
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/ios.yml"
+      - "**.js"
+      - "**.json"
+      - "**.ts"
+      - "**.tsx"
+      - "template/.eslint*"
+      - "template/.prettier*"
+      - "template/package.json"
+      - "template/tsconfig.json"
+      - "template/yarn.lock"
+      - "template/ios/**"
+      - "template/.bundle/**"
+      - "template/.ruby-version"
+      - "template/Gemfile"
+      - "template/Gemfile.lock"
+      - "template/Gemfile"
+  pull_request:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/ios.yml"
+      - "**.js"
+      - "**.json"
+      - "**.ts"
+      - "**.tsx"
+      - "template/package.json"
+      - "template/yarn.lock"
+      - "template/ios/**"
+      - "template/.bundle/**"
+      - "template/.ruby-version"
+      - "template/Gemfile"
+      - "template/Gemfile.lock"
+      - "template/Gemfile"
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: IOS Build
+    runs-on: macOS-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: template
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "template/.nvmrc"
+          cache: "yarn"
+          cache-dependency-path: template/yarn.lock
+      - name: Setup Ruby (bundle)
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          working-directory: template
+      name: Pods cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            template/ios/Pods
+            ~/Library/Caches/CocoaPods
+            ~/.cocoapods
+          key: ${{ runner.os }}-pods-${{ hashFiles('template/ios/Podfile.lock') }}
+      - name: Install dependencies
+        run: yarn
+      - name: Install Pods
+        run: cd ios && pod install --repo-update && cd ..
+      - name: IOS Release Build
+        run: cd ios && xcodebuild -workspace HelloWorld.xcworkspace -configuration Release -scheme HelloWorld -destination 'platform=iOS Simulator,name=iPhone 13'
