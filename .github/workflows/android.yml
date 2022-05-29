@@ -1,0 +1,80 @@
+name: Android Build
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/android.yml"
+      - "**.js"
+      - "**.json"
+      - "**.ts"
+      - "**.tsx"
+      - "template/.eslint*"
+      - "template/.prettier*"
+      - "template/package.json"
+      - "template/tsconfig.json"
+      - "template/yarn.lock"
+      - "template/android/**"
+  pull_request:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/android.yml"
+      - "**.js"
+      - "**.json"
+      - "**.ts"
+      - "**.tsx"
+      - "template/package.json"
+      - "template/yarn.lock"
+      - "template/android/**"
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  android:
+    name: Android Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: template
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "template/.nvmrc"
+          cache: "yarn"
+          cache-dependency-path: template/yarn.lock
+      - name: Setup JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: "11"
+      - name: Cache Gradle Wrapper
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('template/android/gradle/wrapper/gradle-wrapper.properties') }}
+      - name: Cache Gradle Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('template/android/gradle/wrapper/gradle-wrapper.properties') }}
+      - name: Install dependencies
+        run: yarn
+      - name: Android Release Build
+        run: cd android && ./gradlew assembleRelease --no-daemon
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: helloworld-app-release.apk
+          path: template/android/app/build/outputs/apk/release/app-release.apk

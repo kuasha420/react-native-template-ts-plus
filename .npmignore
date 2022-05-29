@@ -17,6 +17,7 @@ template/yarn.lock
 # IOS Generated
 template/.bundle
 template/.ruby-version
+template/ios/openssl.framework
 template/ios/build
 template/ios/Podfile.lock 
 template/ios/Pods/
