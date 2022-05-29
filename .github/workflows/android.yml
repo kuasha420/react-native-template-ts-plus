@@ -63,14 +63,12 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('template/android/gradle/wrapper/gradle-wrapper.properties') }}
       - name: Cache Gradle Dependencies
         uses: actions/cache@v2
         with:
           path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-caches-
+          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('template/android/gradle/wrapper/gradle-wrapper.properties') }}
       - name: Install dependencies
         run: yarn
       - name: Android Release Build
