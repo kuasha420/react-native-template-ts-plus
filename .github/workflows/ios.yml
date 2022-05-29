@@ -83,3 +83,8 @@ jobs:
         run: cd ios && pod install --repo-update && cd ..
       - name: IOS Release Build
         run: yarn ios --configuration Release
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: HelloWorld.app
+          path: /Users/runner/Library/Developer/Xcode/DerivedData/HelloWorld-*/Build/Products/Release-iphonesimulator/HelloWorld.app
