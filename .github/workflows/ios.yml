@@ -51,7 +51,7 @@ jobs:
   ios:
     name: IOS Build
     runs-on: macOS-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     defaults:
       run:
         working-directory: template
@@ -82,4 +82,4 @@ jobs:
       - name: Install Pods
         run: cd ios && pod install --repo-update && cd ..
       - name: IOS Release Build
-        run: cd ios && xcodebuild -workspace HelloWorld.xcworkspace -configuration Release -scheme HelloWorld -destination 'platform=iOS Simulator,name=iPhone 13'
+        run: cd ios && xcodebuild -workspace HelloWorld.xcworkspace -configuration Release -scheme HelloWorld -destination 'platform=iOS Simulator,name=iPhone 13' -quiet
