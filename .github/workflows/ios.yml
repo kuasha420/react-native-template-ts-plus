@@ -81,6 +81,9 @@ jobs:
           key: ${{ runner.os }}-pods-${{ hashFiles('template/ios/Podfile.lock') }}
       - name: Install Pods
         run: cd ios && pod install --repo-update && cd ..
+      - name: Missing Simulator Executable Workaround
+        # See https://github.com/actions/virtual-environments/issues/4545#issuecomment-975719151
+        run: /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f /Applications/Xcode_13.2.1.app/Contents/Developer/Applications/Simulator.app
       - name: IOS Release Build
         run: yarn ios --configuration Release
       - name: Upload Artifact
