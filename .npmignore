@@ -8,6 +8,8 @@ CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 ISSUE_TEMPLATE.md
 yarn.lock
+postversion.js
+/.nvmrc
 
 # Development
 template/node_modules/
