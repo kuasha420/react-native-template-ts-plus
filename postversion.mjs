@@ -5,9 +5,9 @@ import templatePkgJson from "./template/package.json" assert { type: "json" };
 
 const versionFilePath = "./template/src/services/version.ts";
 
-fs.copyFileSync(versionFilePath, "./version.js");
-const { currentVersion } = await import("./version.js");
-fs.rmSync("./version.js");
+fs.copyFileSync(versionFilePath, "./version.mjs");
+const { currentVersion } = await import("./version.mjs");
+fs.rmSync("./version.mjs");
 
 // Update template version in source code.
 execSync(

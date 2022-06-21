@@ -1,10 +1,10 @@
 {
   "name": "react-native-template-ts-plus",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "A React Native TypeScript Template with Superpowers",
   "types": "index.d.ts",
   "scripts": {
-    "version": "node ./postversion.js"
+    "version": "node ./postversion.mjs"
   },
   "repository": {
     "type": "git",
