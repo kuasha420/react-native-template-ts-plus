@@ -3,7 +3,6 @@
   "version": "3.1.1",
   "description": "A React Native TypeScript Template with Superpowers",
   "types": "index.d.ts",
-  "type": "module",
   "scripts": {
     "version": "node ./postversion.js"
   },
