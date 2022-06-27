@@ -49,11 +49,13 @@ jobs:
           node-version-file: "ts-plus/template/.nvmrc"
           cache: "yarn"
           cache-dependency-path: ts-plus/template/yarn.lock
+      - name: Get PWD
+        id: pwd
+        run: echo "::set-output name=pwd::$(pwd)"
       - name: Run React Native CLI
-        run: npx react-native init RNTSApp --template "file:./ts-plus"
-        shell: bash
+        run: npx react-native init RNTSApp --template "file:${{ steps.pwd.outputs.pwd }}\\ts-plus"
       - name: Output package.json
-        run: cat ./RNTSApp/package.json
+        run: ls
         shell: bash
   # macos:
   #   name: On macOS
