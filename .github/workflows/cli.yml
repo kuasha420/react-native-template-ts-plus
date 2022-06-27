@@ -1,0 +1,83 @@
+name: React Native CLI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+concurrency:
+  group: cli-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linux:
+    name: On Linux (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: ts-plus
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "ts-plus/template/.nvmrc"
+          cache: "yarn"
+          cache-dependency-path: ts-plus/template/yarn.lock
+      - name: Run React Native CLI
+        run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
+      - name: Check Template Version
+        run: |
+          cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion '
+          cat ./RNTSApp/src/services/version.ts | grep 'currentVersion '
+          diff <(cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion ') <(cat ./RNTSApp/src/services/version.ts | grep 'currentVersion ')
+  windows:
+    name: On Windows
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: ts-plus
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "ts-plus/template/.nvmrc"
+          cache: "yarn"
+          cache-dependency-path: ts-plus/template/yarn.lock
+      - name: Run React Native CLI
+        run: npx react-native init RNTSApp --template "file:${{ github.workspace }}\ts-plus"
+      - name: Check Template Version
+        run: |
+          cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion '
+          cat ./RNTSApp/src/services/version.ts | grep 'currentVersion '
+          diff <(cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion ') <(cat ./RNTSApp/src/services/version.ts | grep 'currentVersion ')
+        shell: bash
+  macos:
+    name: On macOS
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: ts-plus
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "ts-plus/template/.nvmrc"
+          cache: "yarn"
+          cache-dependency-path: ts-plus/template/yarn.lock
+      - name: Run React Native CLI
+        run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
+      - name: Check Template Version
+        run: |
+          cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion '
+          cat ./RNTSApp/src/services/version.ts | grep 'currentVersion '
+          diff <(cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion ') <(cat ./RNTSApp/src/services/version.ts | grep 'currentVersion ')
