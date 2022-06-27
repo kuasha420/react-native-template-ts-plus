@@ -34,7 +34,10 @@ jobs:
       - name: Run React Native CLI
         run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
       - name: Check Template Version
-        run: diff <(cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion ') <(cat ./RNTSApp/src/services/version.ts | grep 'currentVersion ')
+        run: |
+          cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion '
+          cat ./RNTSApp/src/services/version.ts | grep 'currentVersion '
+          diff <(cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion ') <(cat ./RNTSApp/src/services/version.ts | grep 'currentVersion ')
   windows:
     name: On Windows
     runs-on: windows-latest
@@ -52,7 +55,10 @@ jobs:
       - name: Run React Native CLI
         run: npx react-native init RNTSApp --template "file:${{ github.workspace }}\ts-plus"
       - name: Check Template Version
-        run: diff <(cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion ') <(cat ./RNTSApp/src/services/version.ts | grep 'currentVersion ')
+        run: |
+          cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion '
+          cat ./RNTSApp/src/services/version.ts | grep 'currentVersion '
+          diff <(cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion ') <(cat ./RNTSApp/src/services/version.ts | grep 'currentVersion ')
         shell: bash
   macos:
     name: On macOS
@@ -71,4 +77,7 @@ jobs:
       - name: Run React Native CLI
         run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
       - name: Check Template Version
-        run: diff <(cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion ') <(cat ./RNTSApp/src/services/version.ts | grep 'currentVersion ')
+        run: |
+          cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion '
+          cat ./RNTSApp/src/services/version.ts | grep 'currentVersion '
+          diff <(cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion ') <(cat ./RNTSApp/src/services/version.ts | grep 'currentVersion ')
