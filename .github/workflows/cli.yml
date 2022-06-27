@@ -17,24 +17,24 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # linux:
-  #   name: On Linux (Ubuntu)
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-  #       with:
-  #         path: ts-plus
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version-file: "ts-plus/template/.nvmrc"
-  #         cache: "yarn"
-  #         cache-dependency-path: ts-plus/template/yarn.lock
-  #     - name: Run React Native CLI
-  #       run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
-  #     - name: Output package.json
-  #       run: cat ./RNTSApp/package.json
+  linux:
+    name: On Linux (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: ts-plus
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "ts-plus/template/.nvmrc"
+          cache: "yarn"
+          cache-dependency-path: ts-plus/template/yarn.lock
+      - name: Run React Native CLI
+        run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
+      - name: Output package.json
+        run: cat ./RNTSApp/package.json
   windows:
     name: On Windows
     runs-on: windows-latest
@@ -49,29 +49,25 @@ jobs:
           node-version-file: "ts-plus/template/.nvmrc"
           cache: "yarn"
           cache-dependency-path: ts-plus/template/yarn.lock
-      - name: Get PWD
-        id: pwd
-        run: echo "::set-output name=pwd::$(pwd)"
       - name: Run React Native CLI
-        run: npx react-native init RNTSApp --template "file:${{ steps.pwd.outputs.pwd }}\\ts-plus"
+        run: npx react-native init RNTSApp --template "file:${{ github.workspace }}\\ts-plus"
       - name: Output package.json
-        run: ls
-        shell: bash
-  # macos:
-  #   name: On macOS
-  #   runs-on: macOS-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-  #       with:
-  #         path: ts-plus
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version-file: "ts-plus/template/.nvmrc"
-  #         cache: "yarn"
-  #         cache-dependency-path: ts-plus/template/yarn.lock
-  #     - name: Run React Native CLI
-  #       run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
-  #     - name: Output package.json
-  #       run: cat ./RNTSApp/package.json
+        run: cat .\\RNTSApp\\package.json
+  macos:
+    name: On macOS
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: ts-plus
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "ts-plus/template/.nvmrc"
+          cache: "yarn"
+          cache-dependency-path: ts-plus/template/yarn.lock
+      - name: Run React Native CLI
+        run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
+      - name: Output package.json
+        run: cat ./RNTSApp/package.json
