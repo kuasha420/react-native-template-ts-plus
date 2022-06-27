@@ -33,8 +33,8 @@ jobs:
           cache-dependency-path: ts-plus/template/yarn.lock
       - name: Run React Native CLI
         run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
-      - name: Output package.json
-        run: cat ./RNTSApp/package.json
+      - name: Check Template Version
+        run: diff <(cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion ') <(cat ./RNTSApp/src/services/version.ts | grep 'currentVersion ')
   windows:
     name: On Windows
     runs-on: windows-latest
@@ -50,9 +50,9 @@ jobs:
           cache: "yarn"
           cache-dependency-path: ts-plus/template/yarn.lock
       - name: Run React Native CLI
-        run: npx react-native init RNTSApp --template "file:${{ github.workspace }}\\ts-plus"
-      - name: Output package.json
-        run: cat .\\RNTSApp\\package.json
+        run: npx react-native init RNTSApp --template "file:${{ github.workspace }}\ts-plus"
+      - name: Check Template Version
+        run: diff <(cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion ') <(cat ./RNTSApp/src/services/version.ts | grep 'currentVersion ')
   macos:
     name: On macOS
     runs-on: macOS-latest
@@ -69,5 +69,5 @@ jobs:
           cache-dependency-path: ts-plus/template/yarn.lock
       - name: Run React Native CLI
         run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
-      - name: Output package.json
-        run: cat ./RNTSApp/package.json
+      - name: Check Template Version
+        run: diff <(cat ./ts-plus/template/src/services/version.ts | grep 'currentVersion ') <(cat ./RNTSApp/src/services/version.ts | grep 'currentVersion ')
