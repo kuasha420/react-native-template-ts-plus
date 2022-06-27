@@ -31,14 +31,8 @@ jobs:
           node-version-file: "ts-plus/template/.nvmrc"
           cache: "yarn"
           cache-dependency-path: ts-plus/template/yarn.lock
-      - name: Run pwd
-        run: pwd
-      - name: run ls
-        run: ls
       - name: Run React Native CLI
         run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
-      - name: run ls Again
-        run: ls
       - name: cat package.json
         run: cat ./RNTSApp/package.json
   windows:
@@ -55,18 +49,11 @@ jobs:
           node-version-file: "ts-plus/template/.nvmrc"
           cache: "yarn"
           cache-dependency-path: ts-plus/template/yarn.lock
-      - name: Echo Path
-        run: echo ${{ github.workspace }}
-      - name: Echo Path pwsh
-        run: echo ${{ github.workspace }}
-        shell: pwsh
       - name: Echo Path bash
-        run: echo ${{ github.workspace }}
-        shell: bash
-      - name: Run pwd
         run: pwd
-      - name: Run React Native CLI
-        run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
+        shell: bash
+      # - name: Run React Native CLI
+      #   run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
   # macos:
   #   name: On macOS
   #   runs-on: macOS-latest
