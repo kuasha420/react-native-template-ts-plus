@@ -6,6 +6,9 @@ install! 'cocoapods', :deterministic_uuids => false
 
 production = ENV["PRODUCTION"] == "1"
 
+# Disable Flipper on CI  
+enable_flipper = !ENV['CI'] && FlipperConfiguration.enabled;
+
 target 'HelloWorld' do
   config = use_native_modules!
 
@@ -18,10 +21,7 @@ target 'HelloWorld' do
     :production => production,
     :hermes_enabled => flags[:hermes_enabled],
     :fabric_enabled => flags[:fabric_enabled],
-    # Disable Flipper on CI  
-    if !ENV['CI']
-      :flipper_configuration => FlipperConfiguration.enabled,
-    end
+    :flipper_configuration => enable_flipper,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
