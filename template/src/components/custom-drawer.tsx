@@ -35,6 +35,7 @@ const CustomDrawer = observer<DrawerContentComponentProps>((props) => {
             key={route.key}
             active={props.state.index === i}
             label={props.descriptors[route.key].options.title || route.name}
+            // @ts-ignore - This is a bug in React Native Paper when React 18 types are used.
             icon={props.descriptors[route.key].options.drawerIcon?.(iconProps) ?? undefined}
             onPress={() => props.navigation.navigate(route.name)}
           />
