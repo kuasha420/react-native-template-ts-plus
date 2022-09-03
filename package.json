@@ -1,6 +1,6 @@
 {
   "name": "react-native-template-ts-plus",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "A React Native TypeScript Template with Superpowers",
   "types": "index.d.ts",
   "scripts": {
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/kuasha420/react-native-template-ts-plus/issues"
   },
-  "homepage": "https://github.com/kuasha420/react-native-template-ts-plus#readme"
+  "homepage": "https://github.com/kuasha420/react-native-template-ts-plus#readme",
+  "devDependencies": {
+    "shelljs": "^0.8.5"
+  }
 }

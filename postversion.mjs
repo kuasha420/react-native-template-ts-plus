@@ -1,5 +1,5 @@
-import { execSync } from "child_process";
 import fs from "fs";
+import shelljs from "shelljs";
 import pkgJson from "./package.json" assert { type: "json" };
 import templatePkgJson from "./template/package.json" assert { type: "json" };
 
@@ -10,12 +10,9 @@ const { currentVersion } = await import("./version.mjs");
 fs.rmSync("./version.mjs");
 
 // Update template version in source code.
-execSync(
-  `sed -i "s!${currentVersion}!${pkgJson.version}!g" ${versionFilePath}`
-);
+shelljs.sed("-i", currentVersion, pkgJson.version, versionFilePath);
 
 // Add new version matrix entry in README.md if needed.
-
 const readme = fs.readFileSync("./README.md", "utf8");
 
 const versionRegex =
