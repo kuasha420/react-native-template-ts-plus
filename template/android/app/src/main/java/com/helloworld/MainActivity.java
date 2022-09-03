@@ -3,7 +3,7 @@ package com.helloworld;
 // For React Native Immersive Bar DayNightDetection
 import android.content.res.Configuration;
 
-// For React Native BootSplash
+// For React Native Screens
 import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
@@ -36,6 +36,25 @@ public class MainActivity extends ReactActivity {
   protected ReactActivityDelegate createReactActivityDelegate() {
     return new MainActivityDelegate(this, getMainComponentName());
   }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    // React Native Bootsplash
+    RNBootSplash.init(this);
+
+    // React Native Immersive Bars
+    boolean isDarkMode = false;
+    int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+    if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
+      isDarkMode = true;
+    }
+    ImmersiveBars.changeBarColors(this, isDarkMode);
+    
+    // Reaact Native Screens 
+    // See: https://github.com/software-mansion/react-native-screens/issues/17#issuecomment-424704633
+    super.onCreate(null);
+  }
+  
   public static class MainActivityDelegate extends ReactActivityDelegate {
     public MainActivityDelegate(ReactActivity activity, String mainComponentName) {
       super(activity, mainComponentName);
@@ -55,29 +74,5 @@ public class MainActivity extends ReactActivity {
       // More on this on https://reactjs.org/blog/2022/03/29/react-v18.html
       return BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     }
-
-    // React Native Bootsplash
-    @Override
-    protected void loadApp(String appKey) {
-      RNBootSplash.init(getPlainActivity());
-      super.loadApp(appKey);
-    }
-  }
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    // React Native Immersive Bars
-    boolean isDarkMode = false;
-    int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-
-    if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
-      isDarkMode = true;
-    }
-
-    ImmersiveBars.changeBarColors(this, isDarkMode);
-    
-    // Reaact Native Screens 
-    // See: https://github.com/software-mansion/react-native-screens/issues/17#issuecomment-424704633
-    super.onCreate(null);
   }
 }
