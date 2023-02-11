@@ -1,3 +1,4 @@
+import { changeBarColors } from '@aladdinstudios/react-native-immersive-bars';
 import {
   createMaterialBottomTabNavigator,
   MaterialBottomTabScreenProps,
@@ -5,7 +6,6 @@ import {
 import { CompositeScreenProps, useFocusEffect } from '@react-navigation/native';
 import React, { useCallback } from 'react';
 import { Platform } from 'react-native';
-import { changeBarColors } from 'react-native-immersive-bars';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import useIsDarkTheme from '~/hooks/use-is-dark-theme';
 import { DrawerScreenProp } from '~/navigators/drawer';
