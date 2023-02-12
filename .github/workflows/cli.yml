@@ -68,6 +68,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: ts-plus
+      - name: Mitigate RN-53053 (macOS)
+        run: |
+          sudo rm -rf /usr/local/bin/bundle
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
