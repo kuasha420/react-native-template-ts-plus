@@ -74,6 +74,11 @@ jobs:
           node-version-file: "ts-plus/template/.nvmrc"
           cache: "yarn"
           cache-dependency-path: ts-plus/template/yarn.lock
+      - name: Setup Ruby (bundle)
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          working-directory: template
       - name: Run React Native CLI
         run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
       - name: Check Template Version
