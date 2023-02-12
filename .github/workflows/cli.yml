@@ -78,7 +78,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          working-directory: template
+          working-directory: ts-plus/template
       - name: Run React Native CLI
         run: npx react-native init RNTSApp --template "file://${{ github.workspace }}/ts-plus"
       - name: Check Template Version
