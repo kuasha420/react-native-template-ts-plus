@@ -1,4 +1,4 @@
-export const currentVersion = '5.0.0';
+export const currentVersion = '5.1.0';
 
 const getLatestVersion = async () => {
   try {
