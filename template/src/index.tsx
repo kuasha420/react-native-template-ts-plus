@@ -1,3 +1,4 @@
+import { changeBarColors } from '@aladdinstudios/react-native-immersive-bars';
 import {
   LinkingOptions,
   NavigationContainer,
@@ -7,7 +8,6 @@ import { observer } from 'mobx-react-lite';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { Linking, Platform } from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
-import { changeBarColors } from 'react-native-immersive-bars';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context';
 import useIsDarkTheme from '~/hooks/use-is-dark-theme';
