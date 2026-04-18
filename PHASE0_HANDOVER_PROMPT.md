@@ -6,7 +6,8 @@ Use the following prompt to continue this work in a new workstation or agent ses
 You are continuing the modernization of `react-native-template-ts-plus`.
 
 Repository:
-- Path: `/home/kuasha/Dev/react-native-template-ts-plus`
+- Canonical remote: `https://github.com/kuasha420/react-native-template-ts-plus.git`
+- Use the checked-out local worktree for this repo in the current environment
 - Branch: `feat/resurrection`
 
 Primary objective:
