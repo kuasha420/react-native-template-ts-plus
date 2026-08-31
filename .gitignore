@@ -9,7 +9,10 @@ template/vendor/bundle/
 template/ios/HelloWorld.xcworkspace/xcuserdata/
 
 # Android Generated
-template/android/.gradle
-template/android/.idea
+template/android/.gradle/
+template/android/.idea/
 template/android/local.properties
+template/android/build/
 template/android/app/build/
+template/android/.kotlin/
+template/android/app/.cxx/

@@ -1,222 +1,97 @@
-# HelloWorld App <!-- omit in toc -->
+This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-- [First Run](#first-run)
-- [Change Splash Screen Logo](#change-splash-screen-logo)
-- [Vector Icon](#vector-icon)
-  - [IOS](#ios)
-  - [Android](#android)
-- [Version Bump](#version-bump)
-- [Absolute Aliased Import](#absolute-aliased-import)
-  - [Example](#example)
-    - [ESModule Systax](#esmodule-systax)
-    - [Require Syntax (Generally Used for Assets)](#require-syntax-generally-used-for-assets)
-- [Global State Management](#global-state-management)
-- [Navigation](#navigation)
-  - [Pre Configured Navigators](#pre-configured-navigators)
-  - [Navigator Nesting](#navigator-nesting)
-- [Deep Link](#deep-link)
-  - [URL and Schema](#url-and-schema)
-  - [Testing Deep Links](#testing-deep-links)
-  - [More Info](#more-info)
-- [Components](#components)
-  - [Container](#container)
-  - [Fixed Container](#fixed-container)
-  - [Keyboard Avoiding Container](#keyboard-avoiding-container)
-- [Troubleshooting](#troubleshooting)
+# Getting Started
 
-This was bootstrapped with [TS-Plus Template](https://github.com/kuasha420/react-native-template-ts-plus)
+> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
-## First Run
+## Step 1: Start Metro
 
-Remember to install Pods if you are developing for ios (On MacOS)
+First, you will need to run **Metro**, the JavaScript build tool for React Native.
 
-`cd ios && pod install && cd ..`
+To start the Metro dev server, run the following command from the root of your React Native project:
 
-## Change Splash Screen Logo
+```sh
+# Using npm
+npm start
 
-Replace `src/assets/bootsplash_logo_original.png` with your own then run,
-
-`yarn regenerate-bootsplash`
-
-For more control, see [React Native Bootsplash - Setup - Assets Generation](https://github.com/zoontek/react-native-bootsplash#assets-generation)
-
-## Vector Icon
-
-By default, to reduce footprint, only `MaterialCommunityIcon` is enabled. You can easily enable other icons by following the instruction below.
-
-### IOS
-
-Edit `ios/HelloWorld/Info.plist` and add a property called `UIAppFonts` and add your desired fonts from the list below.
-
-```xml
-<key>UIAppFonts</key>
-<array>
-  <string>AntDesign.ttf</string>
-  <string>Entypo.ttf</string>
-  <string>EvilIcons.ttf</string>
-  <string>Feather.ttf</string>
-  <string>FontAwesome.ttf</string>
-  <string>FontAwesome5_Brands.ttf</string>
-  <string>FontAwesome5_Regular.ttf</string>
-  <string>FontAwesome5_Solid.ttf</string>
-  <string>Foundation.ttf</string>
-  <string>Ionicons.ttf</string>
-  <string>MaterialIcons.ttf</string>
-  <string>MaterialCommunityIcons.ttf</string>
-  <string>SimpleLineIcons.ttf</string>
-  <string>Octicons.ttf</string>
-  <string>Zocial.ttf</string>
-  <string>Fontisto.ttf</string>
-</array>
+# OR using Yarn
+yarn start
 ```
 
-Then Rebuild The App.
+## Step 2: Build and run your app
+
+With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
 
 ### Android
 
-Edit `android/app/build.gradle` and find:
+```sh
+# Using npm
+npm run android
 
-```shell
-project.ext.vectoricons = [
-    iconFontNames: [ 'MaterialCommunityIcons.ttf' ]
-]
+# OR using Yarn
+yarn android
 ```
 
-Now add your desired fonts inside the `iconFontNames` array.
+### iOS
 
-```shell
-iconFontNames: [
-  'AntDesign.ttf',
-  'Entypo.ttf',
-  'EvilIcons.ttf',
-  'Feather.ttf',
-  'FontAwesome.ttf',
-  'FontAwesome5_Brands.ttf',
-  'FontAwesome5_Regular.ttf',
-  'FontAwesome5_Solid.ttf',
-  'Foundation.ttf',
-  'Ionicons.ttf',
-  'MaterialIcons.ttf',
-  'MaterialCommunityIcons.ttf',
-  'SimpleLineIcons.ttf',
-  'Octicons.ttf',
-  'Zocial.ttf',
-  'Fontisto.ttf'
-]
-```
+For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
 
-Then rebuild the app.
-
-## Version Bump
-
-This template comes with react-native-version. Just do,
-
-`yarn version`
-
-to bump version number on both ios and android.
-
-## Absolute Aliased Import
-
-You can import any files inside `src/` directory using `~/` prefix.
-
-### Example
-
-#### ESModule Systax
-
-```ts
-// src/deeply/nested/folder/file.ts(x)
-import { useRootStore } from '~/stores/store-setup';
-```
-
-#### Require Syntax (Generally Used for Assets)
-
-```tsx
-// src/component/coolest-image.tsx
-const CoolestImage = () => (
-  <Image style={styles.logo} source={require('~/assets/bootsplash_logo.png')} />
-);
-```
-
-## Global State Management
-
-The Excellent `mobx-state-tree` is preconfigured with `AsyncStorage` persistence using [mst-persistent-store](https://github.com/kuasha420/mst-persistent-store).
-
-You can access the store using `useRootStore` hook that's exported from `src/stores/store-setup.ts`.
-
-You can view the pre-configured Root Store Model and customize it in `src/stores/root-store.ts`.
-
-To learn Mobx State Tree, checkout their [Getting started](https://mobx-state-tree.js.org/intro/getting-started) tutorial or follow the free [egghead.io course](https://egghead.io/courses/manage-application-state-with-mobx-state-tree).
-
-👉 Official docs can be found at [http://mobx-state-tree.js.org/](http://mobx-state-tree.js.org/)
-
-## Navigation
-
-React Navigation is pre-configured with the Root Stack Being a Native Stack.
-
-### Pre Configured Navigators
-
-1. Native Stack Navigator
-2. Drawer Navigator (With Custom Drawer Component using React Native Paper)
-3. Material Top Tab Navigator
-4. Material Bottom Tab Navigator
-
-### Navigator Nesting
-
-The aforementioned navigators are nested in the following way:
-
-```
-Root Stack Navigator (navigators/root-stack.tsx)
-|-- Loader Screen (screens/loader.tsx)
-|-- Drawer Navigator (navigators/drawer.tsx)
-| |-- Welcome Screen (screens/welcome.tsx)
-| |-- Top Tab Navigator (navigators/top-tab.tsx)
-| | |-- Screen One (screens/one.tsx)
-| | |-- Screen Two (screens/two.tsx)
-| | |-- Screen Three (screens/three.tsx)
-| |-- Bottom Tab Navigator (navigators/bottom-tab.tsx)
-| | |-- Home Screen (screens/home.tsx)
-| | |-- Details Screen (screens/details.tsx)
-```
-
-## Deep Link
-
-Deep Link & Universal Link is also pre-configured for React Navigation. It should `just work` on android. Universal Link for IOS may need additional setup.
-
-### URL and Schema
-
-_URL:_ `https://www.helloworld.com`
-_Schema:_ `helloworld://`
-
-### Testing Deep Links
-
-You can use `uri-scheme` to test deep links on both ios and android.
+The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
 
 ```sh
-npx uri-scheme open helloworld://loader/3000/Test_Deep_Link --android
-npx uri-scheme open helloworld://loader/3000/Test_Deep_Link --ios
-
-npx uri-scheme open https://www.helloworld.com/loader/3000/Test_Deep_Link --android
-npx uri-scheme open https://www.helloworld.com/loader/3000/Test_Deep_Link --ios
+bundle install
 ```
 
-### More Info
+Then, and every time you update your native dependencies, run:
 
-See [React Navigation - Deep linking](https://reactnavigation.org/docs/deep-linking/) & [React Navigation - Configuring links](https://reactnavigation.org/docs/configuring-links/) for more information.
+```sh
+bundle exec pod install
+```
 
-## Components
+For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
 
-### Container
+```sh
+# Using npm
+npm run ios
 
-A scrollable container that respects safe area and accepts both SafeAreaView and ScrollView props.
+# OR using Yarn
+yarn ios
+```
 
-### Fixed Container
+If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
 
-For non scrollable pages, respects safe area and accepts SafeAreaView props.
+This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
-### Keyboard Avoiding Container
+## Step 3: Modify your app
 
-Same as Container, but plays nicely with keyboard. Useful for screens with forms.
+Now that you have successfully run the app, let's make changes!
 
-## Troubleshooting
+Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
 
-See [Here](https://github.com/kuasha420/react-native-template-ts-plus#troubleshooting) for a list of potential issues and their solutions.
+When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+
+- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
+- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+
+## Congratulations! :tada:
+
+You've successfully run and modified your React Native App. :partying_face:
+
+### Now what?
+
+- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
+- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+
+# Troubleshooting
+
+If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+
+# Learn More
+
+To learn more about React Native, take a look at the following resources:
+
+- [React Native Website](https://reactnative.dev) - learn more about React Native.
+- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
+- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
+- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
+- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.

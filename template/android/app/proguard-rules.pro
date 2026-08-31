@@ -8,6 +8,3 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
-
-# Do not Optimize TurboModule classes
--keep class com.facebook.react.turbomodule.** { *; }
