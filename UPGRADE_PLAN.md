@@ -1,23 +1,23 @@
 # React Native Template Modernization Plan
 
-Last updated: 2026-04-18
+Last updated: 2026-08-31
 
 ## Current baseline
 
 - Template package version: `5.1.0`
 - Generated app React Native version: `0.70.7`
 - Generated app React version: `18.1.0`
-- Root `.nvmrc`: `18`
-- Template `.nvmrc`: `16`
+- Root `.nvmrc`: `22`
+- Template `.nvmrc`: `22`
 - Template Ruby pin: `2.7.5`
 
 ## Verified modern React Native baseline
 
-- Latest stable React Native on npm: `0.85.1`
-- Current active release line in the official release docs: `0.85.x`
+- Latest stable React Native on npm: `0.87.1` (React `19.2.3`)
+- Current active release line in official release docs: `0.87.x`
 - React Native `0.76` made the New Architecture the default on `2024-10-23`
 - React Native `0.82` made the New Architecture the only architecture on `2025-10-08`
-- React Native `0.85` was released on `2026-04-07`
+- React Native `0.87` was released in 2026
 
 ## What this template already does well
 
@@ -72,14 +72,14 @@ Use a scaffold-first rebuild strategy instead of an in-place historical upgrade.
 
 Working approach:
 
-1. Replace the contents of `template/` with a fresh React Native `0.85.1` community CLI scaffold.
+1. Replace the contents of `template/` with a fresh React Native `0.87.1` community CLI scaffold.
 2. Reintroduce this template's opinionated DX and libraries on top of that clean baseline.
 3. Diff against the current `master` branch to selectively port anything still valuable.
 
 Why this is now the preferred path:
 
 - It avoids carrying forward obsolete Gradle, Podfile, AppDelegate, Babel, Metro, Jest, and TypeScript setup.
-- It keeps us close to the official RN `0.85.1` template, which lowers future maintenance cost.
+- It keeps us close to the official RN `0.87.1` template, which lowers future maintenance cost.
 - It turns the task from "upgrade every old file correctly" into "start from the known-good modern baseline, then add value back intentionally."
 - It is easier to review in atomic commits because each commit becomes additive and purpose-driven.
 
@@ -125,13 +125,13 @@ Work:
 Suggested commit:
 - `chore: modernize repo toolchain and verification scripts`
 
-### Phase 2: Replace `template/` with a fresh RN 0.85.1 baseline
+### Phase 2: Replace `template/` with a fresh RN 0.87.1 baseline
 
 Goal:
 - Rebase the generated app onto the official modern template in one clean move.
 
 Work:
-- Generate a clean RN `0.85.1` reference app
+- Generate a clean RN `0.87.1` reference app
 - Replace old files under `template/` with the new scaffold
 - Preserve template-specific packaging requirements:
   - placeholder handling
@@ -141,12 +141,12 @@ Work:
 - Remove legacy files that only existed for the old scaffold
 
 Verification:
-- Fresh scaffold matches the official RN `0.85.1` shape
+- Fresh scaffold matches the official RN `0.87.1` shape
 - Template installs cleanly
 - Generated sample app boots on at least one platform
 
 Suggested commit:
-- `feat: replace template scaffold with react-native 0.85.1 baseline`
+- `feat: replace template scaffold with react-native 0.87.1 baseline`
 
 ### Phase 3: Restore template app shell and JS DX
 
@@ -174,14 +174,14 @@ Suggested commit:
 ### Phase 4: Restore native integrations intentionally
 
 Goal:
-- Reapply native behavior only where it still makes sense on RN `0.85.1`.
+- Reapply native behavior only where it still makes sense on RN `0.87.1`.
 
 Work:
 - Re-integrate BootSplash on the current Swift/Kotlin entrypoints
 - Rewire deep linking and associated domains/app links
 - Refit any system bar / edge-to-edge behavior
 - Reconfigure vector icons using the modern package strategy
-- Keep native diffs as small as possible relative to the fresh RN `0.85.1` scaffold
+- Keep native diffs as small as possible relative to the fresh RN `0.87.1` scaffold
 
 Verification:
 - Android and iOS startup
@@ -190,7 +190,7 @@ Verification:
 - theme/system-bar behavior
 
 Suggested commit:
-- `feat: restore native integrations on rn 0.85.1 scaffold`
+- `feat: restore native integrations on rn 0.87.1 scaffold`
 
 ### Phase 5: Library refit and DX restoration
 
@@ -267,7 +267,7 @@ Needs explicit review:
 - `react-native-version`
 
 Approach:
-- keep only if they still provide clear value on RN `0.85.1`
+- keep only if they still provide clear value on RN `0.87.1`
 - otherwise replace with maintained alternatives or lean on core/platform features
 
 ## Tools to use during execution

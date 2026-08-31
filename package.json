@@ -4,7 +4,13 @@
   "description": "A React Native TypeScript Template with Superpowers",
   "types": "index.d.ts",
   "scripts": {
-    "version": "node ./postversion.mjs"
+    "version": "node ./postversion.mjs",
+    "template:lint": "npm --prefix template run lint",
+    "template:type-check": "npm --prefix template run type-check",
+    "template:test": "npm --prefix template run test"
+  },
+  "engines": {
+    "node": ">=22.11.0"
   },
   "repository": {
     "type": "git",
