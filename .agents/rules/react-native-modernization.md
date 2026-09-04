@@ -25,3 +25,14 @@ These rules govern all agent workflows and subagents working on `react-native-te
 - **Atomic Commits & Logs:** Keep changes bounded per phase.
 - **Decision Records:** Document significant dependency or architectural decisions in `docs/adr/`.
 - **Verification Gates:** Run lint, type-check, and smoke app generation at every major phase boundary before finalizing changes.
+
+## 5. Safe Verification & Binary File Safeguards
+- **NO `view_file` ON BINARY FILES:** Never call `view_file` on binary image files (`.png`, `.jpg`), APKs, or binary data. Doing so injects binary payloads that break LLM context and permanently freeze agent execution threads.
+- **Semantic UI Inspection:** Use `tools/harness/dump_ui.py` (or `./tools/harness/dev.sh ui`) to inspect screen state, component trees, texts, and button accessibility.
+- **Visual Artifacts:** Use `tools/harness/capture.py` (or `./tools/harness/dev.sh screenshot`) to capture clean screenshots, and embed them in artifacts using markdown image tags `![caption](/absolute/path.png)` for user viewing.
+
+## 6. Linux & Device Test Harness
+- **Device Target:** Waydroid container (`192.168.240.112:5555`) is running locally for instant, accelerated Android validation on Linux.
+- **Harness CLI:** Use `./tools/harness/dev.sh` commands (`connect`, `status`, `screenshot`, `ui`, `reload`, `menu`, `test`, `build`, `logs`).
+- **Port Forwarding:** Always ensure Metro reverse proxy is active via `adb reverse tcp:8081 tcp:8081` (handled automatically by `dev.sh connect`).
+
