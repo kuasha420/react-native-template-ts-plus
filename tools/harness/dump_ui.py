@@ -39,16 +39,11 @@ def dump_ui(device=None, all_nodes=False):
     focused = get_focused_window(device)
     print(f"📱 Focus: {focused}")
 
-    remote_xml = "/sdcard/window_dump.xml"
-    subprocess.run(["adb", "-s", device, "shell", "uiautomator", "dump", remote_xml], capture_output=True)
+    remote_xml = "/data/local/tmp/uidump.xml"
+    subprocess.run(["adb", "-s", device, "shell", "uiautomator", "dump", "--compressed", remote_xml], capture_output=True)
     
     xml_proc = subprocess.run(["adb", "-s", device, "shell", "cat", remote_xml], capture_output=True, text=True)
     xml_content = xml_proc.stdout.strip()
-
-    if not xml_content or "<hierarchy" not in xml_content:
-        # Fallback to /sdcard/ui.xml if needed
-        xml_proc = subprocess.run(["adb", "-s", device, "shell", "cat", "/sdcard/ui.xml"], capture_output=True, text=True)
-        xml_content = xml_proc.stdout.strip()
 
     if not xml_content or "<hierarchy" not in xml_content:
         print("❌ Failed to obtain UI hierarchy XML from device.", file=sys.stderr)
