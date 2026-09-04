@@ -33,6 +33,19 @@ These rules govern all agent workflows and subagents working on `react-native-te
 
 ## 6. Linux & Device Test Harness
 - **Device Target:** Waydroid container (`192.168.240.112:5555`) is running locally for instant, accelerated Android validation on Linux.
-- **Harness CLI:** Use `./tools/harness/dev.sh` commands (`connect`, `status`, `screenshot`, `ui`, `reload`, `menu`, `test`, `build`, `logs`).
-- **Port Forwarding:** Always ensure Metro reverse proxy is active via `adb reverse tcp:8081 tcp:8081` (handled automatically by `dev.sh connect`).
+- **Port Forwarding:** Always ensure Metro reverse proxy is active via `adb reverse tcp:8081 tcp:8081` (handled automatically by `dev.sh connect` and `dev.sh ensure`).
+- **Freeform Window Bounds:** In Waydroid multi-window mode, the app window occupies dynamic coordinates. Screen captures via `capture.py` automatically detect bounds from `dumpsys window displays` and crop letterboxing.
+
+## 7. Zero Background Tasks & Atomic DX Lifecycle
+- **No Background Servers in Agent Session:** Never launch Metro, long-running dev servers, or file watchers via agent `run_command` with `IsDaemon: true` or foreground blocking. Doing so registers permanent tasks that spam notifications and lock port 8081 across turns.
+- **Atomic Stack Control:**
+  - `./tools/harness/dev.sh ensure` (or `up`): Atomically checks Waydroid, launches Metro detached via `setsid` (`/tmp/react-native-metro.pid`), reverses port 8081, and launches/focuses the app in under 2 seconds.
+  - `./tools/harness/dev.sh teardown` (or `down`): Atomically stops Metro, clears reverse proxies, and stops the app.
+  - `./tools/harness/dev.sh reload`: Triggers fast reload via Metro reload endpoint and `rr` keyevent.
+- **Metro Detached Daemon Standard:** When launching Metro in scripts, always execute inside `template/` with `setsid yarn react-native start --port 8081 --no-interactive > /tmp/react-native-metro.log 2>&1 < /dev/null &`. The `--no-interactive` flag is mandatory to prevent terminal key-listener hangs.
+
+## 8. Automated E2E Testing & Hermes Runtime Inspection
+- **Maestro E2E Protocol:** Verify all screen transitions, drawer navigation, and UI state changes using Maestro flows via `./tools/harness/dev.sh flow tools/harness/smoke_flow.yaml`.
+- **Runtime JS / Store Inspection:** Use `node tools/harness/cdp.js "<js-expression>"` with header `Origin: http://localhost:8081` to inspect live Hermes JavaScript variables or MobX root store states directly over CDP WebSocket.
+
 

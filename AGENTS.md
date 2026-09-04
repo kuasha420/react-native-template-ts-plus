@@ -20,3 +20,4 @@ Welcome to the resurrection and modernization workspace for `react-native-templa
 3. **Template Placeholders**: Preserve `HelloWorld` placeholder name across all template files.
 4. **Preserve Decision History**: All architectural and package migration choices must be recorded in `docs/adr/`.
 5. **No Regressions**: Verify changes with lint, TypeScript compilation, Jest testing, and local smoke app initialization.
+6. **Agent Harness & Verification**: Use `./tools/harness/dev.sh` (documented in `.agents/skills/react-native-harness/SKILL.md`) for atomic environment startup (`ensure`), teardown, semantic UI inspection (`ui`), and Maestro automation (`flow`). Never run persistent background servers inside agent sessions.

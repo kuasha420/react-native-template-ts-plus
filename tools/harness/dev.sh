@@ -10,13 +10,17 @@ function usage() {
 Usage: ./tools/harness/dev.sh <command> [args]
 
 Commands:
+  up | ensure   Atomically ensure device connected, Metro bundler running, reverse port active, and app launched
+  down | teardown  Atomically stop Metro bundler, reverse proxy, and optionally stop app
+  metro         Manage Metro bundler lifecycle: dev.sh metro {start|stop|restart|status|logs|ensure}
   connect       Connect to Waydroid / emulator and configure reverse port forwarding
   status        Check Metro bundler, connected devices, and active app focus
   screenshot    Safely capture a screenshot (e.g. dev.sh screenshot /tmp/screen.png)
   ui            Dump and parse visual UI hierarchy tree (semantic screen state)
   reload        Reload the React Native app bundle
   menu          Trigger React Native Dev Menu (Shake / Keyevent 82)
-  start         Start Metro bundler on port 8081
+  start         Start Metro bundler (background daemon)
+  stop          Stop Metro bundler
   test          Run full verification suite (TypeScript, ESLint, Jest)
   build         Build and install debug APK onto connected device
   logs          Tail or view filtered React Native logcat logs
@@ -29,13 +33,39 @@ CMD="${1:-help}"
 shift || true
 
 case "$CMD" in
+    up|ensure)
+        echo "=== Ensuring React Native Environment is Ready ==="
+        "$SCRIPT_DIR/device.sh"
+        "$SCRIPT_DIR/metro.sh" ensure
+        echo "Ensuring app is running..."
+        CURRENT_FOCUS=$(adb shell "dumpsys window | grep -i 'mCurrentFocus'" 2>/dev/null || true)
+        if [[ "$CURRENT_FOCUS" != *"com.helloworld"* ]]; then
+            echo "Launching com.helloworld/.MainActivity..."
+            adb shell am start -n com.helloworld/.MainActivity
+            sleep 2
+        else
+            echo "App com.helloworld is already in focus."
+        fi
+        echo "✅ React Native environment is active and ready."
+        ;;
+    down|teardown)
+        echo "=== Tearing Down React Native Environment ==="
+        echo "Stopping com.helloworld..."
+        adb shell am force-stop com.helloworld 2>/dev/null || true
+        "$SCRIPT_DIR/metro.sh" stop
+        echo "Clearing adb reverse ports..."
+        adb reverse --remove-all 2>/dev/null || true
+        echo "✅ React Native environment torn down."
+        ;;
+    metro)
+        "$SCRIPT_DIR/metro.sh" "$@"
+        ;;
     connect)
         "$SCRIPT_DIR/device.sh"
         ;;
     status)
         echo "=== Environment Status ==="
-        echo "- Metro Bundler:"
-        curl -s http://localhost:8081/status || echo "  Not running"
+        "$SCRIPT_DIR/metro.sh" status || true
         echo "- Connected Devices:"
         adb devices -l
         echo "- Active Focus:"
@@ -49,16 +79,19 @@ case "$CMD" in
         ;;
     reload)
         echo "Reloading React Native app..."
-        adb shell input text "rr" || adb shell input keyevent 82
-        echo "Done."
+        curl -s -X POST http://localhost:8081/reload >/dev/null 2>&1 || true
+        adb shell input text "rr" 2>/dev/null || adb shell input keyevent 82
+        echo "Reload signal sent."
         ;;
     menu)
         echo "Opening Dev Menu..."
         adb shell input keyevent 82
         ;;
     start)
-        echo "Starting Metro bundler..."
-        yarn --cwd "$ROOT_DIR/template" start --port 8081
+        "$SCRIPT_DIR/metro.sh" start
+        ;;
+    stop)
+        "$SCRIPT_DIR/metro.sh" stop
         ;;
     test)
         echo "Running verification suite..."
