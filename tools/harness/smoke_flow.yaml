@@ -1,0 +1,14 @@
+appId: com.helloworld
+---
+- launchApp:
+    clearState: false
+- tapOn:
+    id: "icon-button"
+    optional: true
+- tapOn:
+    text: "Bottom Tab"
+    optional: true
+- tapOn: "Go to Details Page"
+- assertVisible: "Bottom Tab Details Screen"
+- tapOn: "Go to Home Page"
+- assertVisible: "Bottom Tab Home Screen"

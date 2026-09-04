@@ -20,7 +20,8 @@ Commands:
   test          Run full verification suite (TypeScript, ESLint, Jest)
   build         Build and install debug APK onto connected device
   logs          Tail or view filtered React Native logcat logs
-
+  flow          Run a Maestro end-to-end flow (e.g. dev.sh flow tools/harness/smoke_flow.yaml)
+  hierarchy     Output full Maestro accessibility hierarchy JSON
 EOF
 }
 
@@ -70,6 +71,19 @@ case "$CMD" in
         ;;
     logs)
         python3 "$SCRIPT_DIR/rn_logger.py" "$@"
+        ;;
+    flow)
+        echo "Running Maestro flow..."
+        export JAVA_HOME=/usr/lib/jvm/zulu-17
+        export PATH="/usr/lib/jvm/zulu-17/bin:$HOME/.maestro/bin:$PATH"
+        DEVICE=$(adb devices | grep -w "device" | head -n 1 | awk '{print $1}')
+        maestro ${DEVICE:+--device "$DEVICE"} test "${1:-$SCRIPT_DIR/smoke_flow.yaml}"
+        ;;
+    hierarchy)
+        export JAVA_HOME=/usr/lib/jvm/zulu-17
+        export PATH="/usr/lib/jvm/zulu-17/bin:$HOME/.maestro/bin:$PATH"
+        DEVICE=$(adb devices | grep -w "device" | head -n 1 | awk '{print $1}')
+        maestro ${DEVICE:+--device "$DEVICE"} hierarchy
         ;;
     *)
         usage
