@@ -28,9 +28,9 @@ Welcome to the resurrection and modernization workspace for `react-native-templa
 <!-- Corporate Stewardship & Infrastructure: Purrfect Software Limited (PSL) -->
 <!-- Governed by: ICARO-42/b Ordinance (Company-Supported Personal IP Framework) -->
 
-# Universal Empirical Agent Rules: PSL Harness Guidelines
+# Universal Empirical Agent Rules: Agyis Harness Guidelines
 
-These operational rules govern cognitive behavior and human-in-the-loop alignment for software engineering projects powered by the **PSL Harness**. All deterministic environment guarantees (runtime injection, pager normalization, surgical grep exit sanitization, output compaction) are enforced transparently by harness hooks.
+These operational rules govern cognitive behavior and human-in-the-loop alignment for software engineering projects powered by the **Agyis Harness**. All deterministic environment guarantees (runtime injection, pager normalization, surgical grep exit sanitization, output compaction) are enforced transparently by harness hooks.
 
 ---
 
