@@ -125,7 +125,7 @@ node tools/harness/cdp.js "document.title || navigator.userAgent"
 ### Port 8081 Conflict / EADDRINUSE
 ```bash
 ./tools/harness/dev.sh metro stop
-fuser -k -9 8081/tcp 2>/dev/null || true
+fuser -k -9 8081/tcp 2>/dev/null || [ $? -le 1 ]
 ./tools/harness/dev.sh metro start
 ```
 
