@@ -23,7 +23,7 @@ Welcome to the resurrection and modernization workspace for `react-native-templa
 6. **Agent Harness & Verification**: Use `./tools/harness/dev.sh` (documented in `.agents/skills/react-native-harness/SKILL.md`) for atomic environment startup (`ensure`), teardown, semantic UI inspection (`ui`), and Maestro automation (`flow`). Never run persistent background servers inside agent sessions.
 
 <!-- Added by AGYIS-HARNESS -->
-<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- SPDX-License-Identifier: MIT -->
 <!-- Copyright (c) 2026 Arafat Zahan (@kuasha420) -->
 <!-- Corporate Stewardship & Infrastructure: Purrfect Software Limited (PSL) -->
 <!-- Governed by: ICARO-42/b Ordinance (Company-Supported Personal IP Framework) -->
